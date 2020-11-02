@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ui.main.carts.OrderFailFragment">
+    <Button
+        android:id="@+id/btn_close_fail"
+        android:layout_width="@dimen/size_24"
+        android:layout_height="@dimen/size_24"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:background="@drawable/ic_close"
+        android:backgroundTint="@color/colorPrimary"
+        android:layout_marginEnd="@dimen/activity_horizontal_margin"
+        android:layout_marginTop="@dimen/activity_vertical_margin"
+        />
+    <ImageView
+
+        android:layout_width="@dimen/image_size_120"
+        android:layout_height="@dimen/image_size_120"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:background="@drawable/ic_close"
+        app:layout_constraintBottom_toTopOf="@id/text_order_placed"
+        />
+    <TextView
+        android:id="@+id/text_order_placed"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:text="@string/order_not_completed"
+        android:fontFamily="@font/poppins_medium"
+        android:textSize="@dimen/large_text"
+        />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/text_order_placed"
+        android:layout_marginTop="@dimen/activity_vertical_margin"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:lines="3"
+        android:textColor="@color/product_name_color"
+        android:fontFamily="@font/poppins"
+        android:textSize="@dimen/title"
+        android:layout_marginEnd="@dimen/activity_horizontal_margin"
+        android:text="@string/you_can_easily_order_it_any_time"
+        />
+    <include layout="@layout/reuse_curve_text_image_button"
+        android:id="@+id/btn_to_my_carts"/>
+</androidx.constraintlayout.widget.ConstraintLayout>

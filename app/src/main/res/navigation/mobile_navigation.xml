@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/mobile_navigation"
+    app:startDestination="@+id/navigation_homes">
+
+    <fragment
+        android:id="@+id/navigation_homea"
+        android:name="com.treecode.GloShop.ui.main.home.HomeFragment"
+        android:label="@string/title_home"
+        tools:layout="@layout/fragment_home" >
+        <action
+            android:id="@+id/action_navigation_home_to_navigation_search"
+            app:destination="@id/navigation_home_search" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/navigation_searchs"
+        android:name="com.treecode.GloShop.ui.main.search.SearchFragment"
+        android:label="@string/title_search"
+        tools:layout="@layout/fragment_search" />
+
+    <fragment
+        android:id="@+id/navigation_cart"
+        android:name="com.treecode.GloShop.ui.main.carts.CartsFragment"
+        android:label="@string/title_cart"
+        tools:layout="@layout/fragment_carts" />
+    <fragment
+        android:id="@+id/navigation_profile"
+        android:name="com.treecode.GloShop.ui.main.profile.ProfileFragment"
+        android:label="profile_fragment"
+        tools:layout="@layout/profile_fragment" >
+
+    </fragment>
+    <fragment
+        android:id="@+id/navigation_home_search"
+        android:name="com.treecode.GloShop.ui.main.search.SearchFragment"
+        android:label="@string/title_search"
+        tools:layout="@layout/fragment_search" />
+</navigation>

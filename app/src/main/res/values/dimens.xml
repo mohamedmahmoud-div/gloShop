@@ -1,0 +1,38 @@
+<resources>
+    <!-- Default screen margins, per the Android Design guidelines. -->
+    <dimen name="activity_horizontal_margin">16dp</dimen>
+    <dimen name="activity_vertical_margin">16dp</dimen>
+    <dimen name="top_margin">10dp</dimen>
+    <dimen name="image_size_100">100dp</dimen>
+    <dimen name="image_size_120">120dp</dimen>
+    <dimen name="image_size_medium">70dp</dimen>
+    <dimen name="sections_margin">32dp</dimen>
+    <dimen name="small_margin">8dp</dimen>
+    <dimen name="subtitle">15sp</dimen>
+    <dimen name="title">20sp</dimen>
+    <dimen name="bottom_padding_hight">64dp</dimen>
+    <dimen name="cellText">15sp</dimen>
+    <dimen name="size_16">16dp</dimen>
+    <dimen name="size_round_edit_text">45dp</dimen>
+    <dimen name="margin_medium">24dp</dimen>
+    <dimen name="size_64">64dp</dimen>
+    <dimen name="size_32">32dp</dimen>
+    <dimen name="size_24">24dp</dimen>
+    <dimen name="size_card">10dp</dimen>
+    <dimen name="font_title">20sp</dimen>
+    <dimen name="font_sub_title">18sp</dimen>
+    <dimen name="size_body">16sp</dimen>
+    <dimen name="appbar_padding">16dp</dimen>
+    <dimen name="fab_margin">16dp</dimen>
+    <dimen name="appbar_padding_top">8dp</dimen>
+    <!-- Default screen margins, per the Android Design guidelines. -->
+    <dimen name="fragment_horizontal_margin">16dp</dimen>
+    <dimen name="fragment_vertical_margin">16dp</dimen>
+    <dimen name="large_text">30sp</dimen>
+    <dimen name="activityPadding">16dp</dimen>
+    <dimen name="placeholderImage">60dp</dimen>
+    <dimen name="placeholderTextHeight">8dp</dimen>
+    <dimen name="padding_10">10dp</dimen>
+    <dimen name="small_text">10sp</dimen>
+    <dimen name="ic_width">22dp</dimen>
+</resources>

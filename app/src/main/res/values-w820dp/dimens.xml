@@ -1,0 +1,40 @@
+<resources>
+    <!-- Example customization of dimensions originally defined in res/values/dimens.xml
+         (such as screen margins) for screens with more than 820dp of available width. This
+         would include 7" and 10" devices in landscape (~960dp and ~1280dp respectively). -->
+    <dimen name="activity_horizontal_margin">64dp</dimen>
+    <dimen name="large_text">30sp</dimen>
+    <dimen name="activity_vertical_margin">64dp</dimen>
+    <dimen name="top_margin">30dp</dimen>
+    <dimen name="image_size_100">200dp</dimen>
+    <dimen name="image_size_120">220dp</dimen>
+    <dimen name="image_size_medium">140dp</dimen>
+    <dimen name="sections_margin">64dp</dimen>
+    <dimen name="small_margin">18dp</dimen>
+    <dimen name="subtitle">25sp</dimen>
+    <dimen name="title">30sp</dimen>
+    <dimen name="bottom_padding_hight">80dp</dimen>
+    <dimen name="cellText">25sp</dimen>
+    <dimen name="size_16">32dp</dimen>
+    <dimen name="size_round_edit_text">75dp</dimen>
+    <dimen name="margin_medium">44dp</dimen>
+    <dimen name="size_64">104dp</dimen>
+    <dimen name="size_32">64dp</dimen>
+    <dimen name="size_24">28dp</dimen>
+    <dimen name="size_card">30dp</dimen>
+    <dimen name="font_title">30sp</dimen>
+    <dimen name="font_sub_title">28sp</dimen>
+    <dimen name="size_body">26sp</dimen>
+    <dimen name="appbar_padding">26dp</dimen>
+    <dimen name="fab_margin">26dp</dimen>
+    <dimen name="appbar_padding_top">18dp</dimen>
+    <!-- Default screen margins, per the Android Design guidelines. -->
+    <dimen name="fragment_horizontal_margin">64dp</dimen>
+    <dimen name="fragment_vertical_margin">64dp</dimen>
+    <dimen name="activityPadding">26dp</dimen>
+    <dimen name="placeholderImage">80dp</dimen>
+    <dimen name="placeholderTextHeight">18dp</dimen>
+    <dimen name="padding_10">20dp</dimen>
+    <dimen name="small_text">20sp</dimen>
+    <dimen name="ic_width">44dp</dimen>
+</resources>

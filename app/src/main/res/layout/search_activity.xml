@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ui.main.home.ui.main.HomeActivity"
+   >
+
+
+
+    <androidx.appcompat.widget.Toolbar android:id="@+id/search_bar"
+        app:layout_constraintTop_toTopOf="parent"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        tools:ignore="MissingConstraints"
+        app:title="@string/Login"
+        android:background="@color/colorPrimary"
+        >
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <ImageView
+                android:layout_width="80dp"
+                android:layout_height="?attr/actionBarSize"
+
+                app:layout_constraintStart_toStartOf="parent"
+
+                app:layout_constraintTop_toTopOf="parent"
+                android:background="@drawable/hajar_bar_logo"
+                />
+
+            <TextView
+                android:id="@+id/title_your"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/poppins_bold"
+                android:textSize="@dimen/title"
+                android:text="Your"
+                android:textStyle="bold"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"
+                android:layout_marginStart="@dimen/activity_horizontal_margin"
+                android:textColor="@color/white"
+                app:layout_constraintEnd_toStartOf="@id/search_searchvc"
+                android:layout_marginEnd="@dimen/sections_margin"
+                android:visibility="gone"
+                />
+            <TextView
+                android:id="@+id/title_logo"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Logo"
+                app:layout_constraintStart_toEndOf="@id/title_your"
+                android:visibility="gone"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"
+                android:textColor="@color/orange"
+                android:fontFamily="@font/poppins_bold"
+                android:textSize="@dimen/title"
+                />
+            <androidx.appcompat.widget.SearchView
+                android:id="@+id/search_searchvc"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_constraintEnd_toEndOf="parent"
+                android:layout_marginEnd="@dimen/activity_vertical_margin"
+                android:background="@drawable/shape_circle"
+                app:layout_constraintTop_toTopOf="parent"
+                android:layout_marginStart="@dimen/activity_horizontal_margin"
+                app:layout_constraintBottom_toBottomOf="parent"
+                />
+
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.appcompat.widget.Toolbar>
+    <include
+        layout="@layout/item_bottom_navigation"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom"
+        app:layout_constraintBottom_toBottomOf="parent" />
+
+
+    <FrameLayout
+        android:id="@+id/search_container"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_marginBottom="@dimen/small_margin"
+        app:layout_constraintTop_toBottomOf="@id/search_bar"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/navigation"
+        tools:ignore="UnknownId"
+        >
+    </FrameLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>

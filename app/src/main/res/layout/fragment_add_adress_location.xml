@@ -1,0 +1,142 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    tools:context=".ui.main.profile.addressbook.AddAdressLocationFragment">
+
+    <EditText
+        android:id="@+id/edit_payment_address"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/size_round_edit_text"
+        android:layout_marginStart="@dimen/margin_medium"
+        android:layout_marginTop="@dimen/small_margin"
+        android:layout_marginEnd="@dimen/margin_medium"
+        android:hint="@string/address"
+        android:textColor="@color/black"
+        android:padding="@dimen/small_margin"
+        android:inputType="text"
+        android:background="@drawable/edit_text_border"
+        android:selectAllOnFocus="true"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        />
+
+    <EditText
+        android:id="@+id/edit_address_post_code"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/size_round_edit_text"
+        android:layout_marginStart="@dimen/margin_medium"
+        android:layout_marginEnd="@dimen/margin_medium"
+        android:layout_marginTop="@dimen/activity_vertical_margin"
+        android:hint="@string/post_code"
+        android:textColor="@color/black"
+        android:padding="@dimen/small_margin"
+        android:inputType="number"
+        android:background="@drawable/edit_text_border"
+        android:selectAllOnFocus="true"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        />
+    <EditText
+        android:id="@+id/edit_address_region"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/size_round_edit_text"
+        android:layout_marginStart="@dimen/margin_medium"
+        android:layout_marginEnd="@dimen/margin_medium"
+        android:layout_marginTop="@dimen/activity_vertical_margin"
+        android:hint="@string/region"
+        android:textColor="@color/black"
+        android:padding="@dimen/small_margin"
+        android:inputType="text"
+        android:background="@drawable/edit_text_border"
+        android:selectAllOnFocus="true"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        />
+    <EditText
+        android:id="@+id/edit_address_phone"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/size_round_edit_text"
+        android:layout_marginStart="@dimen/margin_medium"
+        android:layout_marginEnd="@dimen/margin_medium"
+        android:layout_marginTop="@dimen/activity_vertical_margin"
+        android:hint="@string/phone_number"
+        android:textColor="@color/black"
+        android:padding="@dimen/small_margin"
+        android:inputType="phone"
+        android:background="@drawable/edit_text_border"
+        android:selectAllOnFocus="true"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        />
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginStart="@dimen/activity_horizontal_margin"
+        android:layout_marginVertical="@dimen/sections_margin"
+        >
+        <TextView
+            android:id="@+id/txtView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/select_country"
+            android:fontFamily="@font/poppins_medium"
+            android:textSize = "@dimen/title"
+            />
+
+        <Spinner
+            android:id="@+id/spinner_country"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="@dimen/small_margin"
+
+            />
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginStart="@dimen/activity_horizontal_margin"
+        android:layout_marginTop="@dimen/activity_vertical_margin"
+        android:layout_marginBottom="@dimen/sections_margin"
+        >
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/select_city"
+            android:fontFamily="@font/poppins_medium"
+            android:textSize = "@dimen/title"
+            />
+
+        <Spinner
+            android:id="@+id/spinner_city"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="@dimen/small_margin"
+           />
+    </LinearLayout>
+
+
+<Button
+    android:id="@+id/btn_save_address"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@drawable/button_rounded"
+    android:text="@string/save"
+    android:layout_marginHorizontal="@dimen/size_24"
+    android:layout_marginTop="@dimen/sections_margin"
+    android:layout_gravity="center"
+    android:fontFamily="@font/poppins_medium"
+    android:textSize="@dimen/title"
+    android:textColor="@color/white"
+    />
+
+</LinearLayout>

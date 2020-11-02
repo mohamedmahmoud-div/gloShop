@@ -1,0 +1,212 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<LinearLayout xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    android:background="@color/shadow"
+    >
+
+    <androidx.cardview.widget.CardView
+        android:layout_width="200dp"
+        android:layout_height="wrap_content"
+        app:cardCornerRadius="10dp"
+        app:cardElevation="30dp"
+
+        android:layout_margin="@dimen/activity_horizontal_margin"
+
+        app:cardBackgroundColor="@color/white"
+
+        android:layout_marginStart="@dimen/activity_horizontal_margin">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_marginEnd="@dimen/small_margin"
+            android:layout_marginStart="@dimen/small_margin" >
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_marginBottom="@dimen/small_margin"
+                >
+
+                <TextView
+                    android:id="@+id/text_product_offer"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="@id/button_arrival_wishlist"
+                    android:textSize="@dimen/subtitle"
+                    android:fontFamily="@font/poppins_medium"
+                    android:textColor="@color/red_rate"
+                    android:text="40%"
+                    android:visibility="gone"
+                        android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
+                <TextView
+                    android:id="@+id/text_percentage"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintStart_toEndOf="@id/text_product_offer"
+                    app:layout_constraintTop_toTopOf="@id/button_arrival_wishlist"
+                    android:text="@string/percentage"
+                    android:visibility="gone"
+                    />
+                <Button
+                    android:id="@+id/button_arrival_wishlist"
+                    android:layout_width="@dimen/size_24"
+                    android:layout_height="@dimen/size_24"
+                    android:layout_marginTop="@dimen/small_margin"
+                    android:layout_marginEnd="@dimen/activity_horizontal_margin"
+                    android:background="@drawable/ic_wish"
+                    android:textSize="@dimen/cellText"
+                    android:backgroundTint="@color/red"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
+            <ImageView
+                android:id="@+id/image_arrival_product"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/image_size_100"
+                android:background="@color/white"
+
+                android:layout_marginBottom="@dimen/small_margin"/>
+
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/text_arrival_category_name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/poppins_light"
+                android:lines="1"
+                android:text="LapTop"
+                android:textColor="@color/product_name_color"
+                android:textSize="@dimen/title" />
+
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/text_arrival_product_name"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_marginBottom="@dimen/small_margin"
+                android:lines="1"
+                android:text="Apple"
+                android:textColor="@color/grey"
+                android:textSize="@dimen/cellText"
+                android:visibility="gone"/>
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+                <com.google.android.material.textview.MaterialTextView
+                    android:id="@+id/text_arrival_product_price"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="@dimen/small_margin"
+                    android:fontFamily="@font/poppins_medium"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/size_body"
+                    />
+                <TextView
+                    android:id="@+id/text_product_le"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintStart_toEndOf="@id/text_arrival_product_price"
+                    app:layout_constraintTop_toTopOf="parent"
+                    android:text="@string/le"
+                    android:fontFamily="@font/poppins_medium"
+                    android:textSize="@dimen/size_body"
+                    />
+                <ImageView
+                    android:id="@+id/line_offer_change"
+                    android:layout_width="0dp"
+                    android:layout_height="1dp"
+                      app:layout_constraintStart_toStartOf="@id/text_arrival_product_price"
+                        app:layout_constraintTop_toTopOf="@id/text_arrival_product_price"
+                    app:layout_constraintBottom_toBottomOf="@id/text_arrival_product_price"
+                    app:layout_constraintEnd_toEndOf="@id/text_arrival_product_price"
+                    android:background="@color/red_rate"
+                   android:visibility="gone"
+                    />
+                <TextView
+                    android:id="@+id/text_arrival_product_after_discount_price"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_marginStart="@dimen/small_margin"
+                    android:layout_marginBottom="@dimen/small_margin"
+                    android:fontFamily="@font/poppins_medium"
+                    app:layout_constraintStart_toEndOf="@id/text_product_le"
+                    app:layout_constraintTop_toTopOf="parent"
+                    android:visibility="gone"
+                    android:textColor="@color/red_rate"
+                    android:textSize="@dimen/size_body"
+
+                    />
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+          <!--  <androidx.appcompat.widget.AppCompatRatingBar
+                android:id="@+id/rating_arrival_product"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:numStars="5"
+                android:stepSize="0.1"
+                android:theme="@style/RatingBar"
+                style="?android:attr/ratingBarStyleSmall"
+
+                />-->
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="35dp"
+                android:background="@color/white"
+                android:layout_marginBottom="@dimen/small_margin" >
+                <Button
+                    android:id="@+id/button_arrival_cart"
+                    android:layout_width="@dimen/size_24"
+                    android:layout_height="@dimen/size_24"
+                    android:layout_margin="@dimen/small_margin"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    android:background="@drawable/ic_add_cart"
+                    android:textAppearance="@style/TextAppearance.MaterialComponents.Button"
+
+                    />
+
+                <LinearLayout
+                    android:id="@+id/layout_item_product_rate"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    android:background="@drawable/button_rounded"
+                    android:backgroundTint="@color/red_rate"
+                    android:layout_marginTop="@dimen/small_margin"
+                    android:gravity="center_vertical"
+                    android:layout_marginEnd="@dimen/small_margin"
+                    >
+                    <ImageView
+                        android:layout_marginStart="@dimen/small_margin"
+                        android:layout_width="@dimen/size_16"
+                        android:layout_height="@dimen/size_16"
+                        android:background="@android:drawable/star_off"
+                        android:layout_marginEnd="@dimen/activity_horizontal_margin"
+                        android:backgroundTint="@color/white"
+                        />
+
+                    <TextView
+                        android:id="@+id/text_rate_percent"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/poppins_light"
+                        android:layout_marginEnd="@dimen/small_margin"
+                            android:textSize="@dimen/size_body"
+                        android:textColor="@color/white" />
+
+                </LinearLayout>
+
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+        </LinearLayout>
+    </androidx.cardview.widget.CardView>
+</LinearLayout>

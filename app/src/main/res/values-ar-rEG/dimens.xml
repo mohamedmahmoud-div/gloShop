@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="sections_margin">32dp</dimen>
+    <dimen name="small_margin">8dp</dimen>
+    <dimen name="bottom_padding_hight">64dp</dimen>
+    <dimen name="cellText">15sp</dimen>
+    <dimen name="size_16">25dp</dimen>
+    <dimen name="size_round_edit_text">45dp</dimen>
+    <dimen name="margin_medium">24dp</dimen>
+    <dimen name="font_title">20sp</dimen>
+    <dimen name="font_sub_title">18sp</dimen>
+    <dimen name="size_body">16sp</dimen>
+    <dimen name="large_text">30sp</dimen>
+</resources>

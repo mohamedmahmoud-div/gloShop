@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/container"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+
+
+    tools:context=".ui.main.registration.ui.login.LoginActivity">
+
+    <include
+        android:id="@+id/login_bar"
+        app:layout_constraintTop_toTopOf="parent"
+        layout="@layout/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        />
+    <ImageView
+        android:id="@+id/image_background_logo"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@drawable/bg_tree"
+        android:layout_marginTop="@dimen/activity_vertical_margin"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginEnd="@dimen/activity_horizontal_margin"
+        android:layout_marginStart="@dimen/activity_horizontal_margin"
+
+        app:layout_constraintTop_toBottomOf="@id/login_bar"
+        />
+
+    <EditText
+        android:id="@+id/username"
+        android:layout_width="0dp"
+        android:layout_height="@dimen/size_round_edit_text"
+        android:layout_marginStart="@dimen/margin_medium"
+        android:layout_marginTop="96dp"
+        android:layout_marginEnd="@dimen/margin_medium"
+        android:hint="@string/prompt_email"
+        android:textColor="@color/cyan"
+        android:padding="@dimen/small_margin"
+        android:inputType="textEmailAddress"
+        android:background="@drawable/edit_text_border"
+        android:selectAllOnFocus="true"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/image_background_logo" />
+
+    <EditText
+        android:id="@+id/password"
+        android:layout_width="0dp"
+        android:layout_height="@dimen/size_round_edit_text"
+        android:layout_marginStart="@dimen/margin_medium"
+        android:layout_marginTop="@dimen/activity_vertical_margin"
+        android:textColor="@color/cyan"
+        android:layout_marginEnd="@dimen/margin_medium"
+        android:hint="@string/prompt_password"
+        android:background="@drawable/edit_text_border"
+        android:padding="@dimen/small_margin"
+        android:imeActionLabel="@string/action_sign_in_short"
+        android:imeOptions="actionDone"
+        android:inputType="textPassword"
+        android:selectAllOnFocus="true"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/username" />
+
+    <Button
+        android:id="@+id/login"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_gravity="start"
+        android:layout_marginStart="@dimen/margin_medium"
+        android:layout_marginEnd="@dimen/margin_medium"
+        android:layout_marginBottom="64dp"
+        android:background="@drawable/button_rounded"
+        android:textColor="@color/white"
+        android:enabled="false"
+        android:text="@string/sign_in"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintVertical_bias="0.2" />
+
+    <ProgressBar
+        android:id="@+id/loading"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginStart="32dp"
+        android:layout_marginTop="64dp"
+        android:layout_marginEnd="32dp"
+        android:layout_marginBottom="64dp"
+        android:visibility="gone"
+        android:background="@color/colorPrimary"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="@+id/password"
+        app:layout_constraintStart_toStartOf="@+id/password"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.3" />
+</androidx.constraintlayout.widget.ConstraintLayout>

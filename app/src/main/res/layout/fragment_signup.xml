@@ -1,0 +1,242 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+
+<androidx.constraintlayout.widget.ConstraintLayout android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+        <EditText
+            android:id="@+id/edit_sign_up_email"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="24dp"
+            android:layout_marginTop="@dimen/activity_vertical_margin"
+            android:layout_marginEnd="24dp"
+            android:hint="@string/prompt_email"
+            android:inputType="textEmailAddress"
+            android:selectAllOnFocus="true"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+
+
+        <EditText
+            android:id="@+id/edit_sign_up_password"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="24dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="24dp"
+            android:hint="@string/prompt_password"
+            android:imeActionLabel="@string/action_sign_in_short"
+            android:imeOptions="actionDone"
+            android:inputType="textPassword"
+            android:textAlignment="viewStart"
+            android:selectAllOnFocus="true"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/edit_sign_up_email" />
+
+
+        <EditText
+            android:id="@+id/edit_confirm_password"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="24dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="24dp"
+            android:hint="@string/confirm_password"
+            android:imeActionLabel="@string/action_sign_in_short"
+            android:imeOptions="actionDone"
+            android:textAlignment="viewStart"
+            android:inputType="textPassword"
+            android:selectAllOnFocus="true"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/edit_sign_up_password" />
+
+<EditText
+    android:id="@+id/edit_full_name"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    app:layout_constraintTop_toBottomOf="@id/edit_confirm_password"
+    app:layout_constraintStart_toStartOf="parent"
+    android:layout_marginStart="@dimen/size_24"
+    android:hint="@string/fullname"
+    />
+        <EditText
+            android:id="@+id/edit_user_name"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toBottomOf="@id/edit_full_name"
+            app:layout_constraintStart_toStartOf="parent"
+            android:layout_marginEnd="@dimen/activity_horizontal_margin"
+            android:hint="@string/username"
+            android:layout_marginStart="24dp"
+            />
+
+
+    <TextView
+        android:id="@+id/text_birth_date_header"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/poppins_medium"
+        android:text="@string/birthdate"
+        android:textSize="@dimen/title"
+        android:layout_marginTop="@dimen/fragment_vertical_margin"
+        android:textColor="@color/black"
+        app:layout_constraintStart_toStartOf="@id/radio_group_gender"
+        app:layout_constraintTop_toBottomOf="@id/edit_user_name" />
+    <DatePicker
+        android:id="@+id/datePicker1"
+        android:layout_width="wrap_content"
+        android:layout_height="150dp"
+        android:datePickerMode="spinner"
+        android:calendarViewShown="false"
+        app:layout_constraintTop_toBottomOf="@id/text_birth_date_header"
+        app:layout_constraintStart_toStartOf="@id/radio_group_gender"
+        android:background="@color/white"
+        android:calendarTextColor="@color/white"
+        android:layout_marginEnd="@dimen/activity_horizontal_margin"
+        />
+
+
+    <TextView
+        android:id="@+id/text_gender_header"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/poppins_medium"
+        android:text="@string/gender"
+        android:textSize="@dimen/title"
+        android:layout_marginTop="@dimen/small_margin"
+        android:textColor="@color/black"
+        app:layout_constraintStart_toStartOf="@id/radio_group_gender"
+        app:layout_constraintTop_toBottomOf="@id/datePicker1" />
+    <RadioGroup
+        android:id="@+id/radio_group_gender"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/text_gender_header"
+        android:orientation="vertical"
+        android:layout_marginStart="@dimen/margin_medium"
+        >
+
+        <RadioButton
+            android:id="@+id/radio_male"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/male"
+            android:checked="true"
+
+            />
+        <RadioButton
+            android:id="@+id/radio_female"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/female"
+            />
+    </RadioGroup>
+    <Button
+        android:id="@+id/btn_sign_up"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="start"
+        android:layout_marginStart="48dp"
+        android:layout_marginTop="@dimen/activity_vertical_margin"
+        android:layout_marginEnd="48dp"
+
+        android:enabled="false"
+        android:background="@drawable/button_rounded"
+        android:textColor="@color/white"
+        android:text="@string/sign_up"
+        app:layout_constraintTop_toBottomOf="@id/radio_group_gender"
+        app:layout_constraintStart_toStartOf="parent"
+        />
+
+    <com.facebook.login.widget.LoginButton
+            android:id="@+id/btn_sign_up_fb"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="48dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginEnd="48dp"
+            android:layout_marginBottom="@dimen/activity_vertical_margin"
+            android:enabled="true"
+            android:background="@drawable/button_rounded"
+            android:backgroundTint="@color/white"
+            app:layout_constraintBottom_toTopOf="@id/layout_gmail"
+        app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/btn_sign_up"
+            android:textColor="#4285F4"
+            android:text="@string/signup_with_facebook"
+            tools:ignore="NotSibling" />
+        <ImageView
+            android:id="@+id/image_facebook"
+            android:layout_width="@dimen/size_32"
+            android:layout_height="@dimen/size_32"
+            app:layout_constraintTop_toTopOf="@id/btn_sign_up_fb"
+            app:layout_constraintBottom_toBottomOf="@id/btn_sign_up_fb"
+            app:layout_constraintStart_toStartOf="@id/btn_sign_up_fb"
+            android:layout_marginStart="@dimen/small_margin"
+            android:background="@drawable/ic_facebook"
+            />
+    <LinearLayout
+        android:id="@+id/layout_gmail"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        android:layout_marginStart="48dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="48dp"
+        android:layout_marginBottom="64dp"
+        android:orientation="horizontal"
+        android:background="@drawable/button_rounded"
+        android:gravity="center_vertical"
+        android:backgroundTint="#4285F4"    >
+        <ImageView
+            android:id="@+id/image_gmail"
+            android:layout_width="@dimen/size_32"
+            android:layout_height="@dimen/size_32"
+            android:background="@drawable/ic_gmail"
+            android:layout_marginStart="@dimen/small_margin"
+            />
+        <Button
+            android:id="@+id/btn_sign_up_gmail"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:enabled="true"
+            android:background="@drawable/button_rounded"
+            android:backgroundTint="#4285F4"
+            android:textColor="@color/white"
+            android:text="@string/sign_up_with_gmail"
+
+            />
+
+    </LinearLayout>
+
+    <ProgressBar
+        android:id="@+id/sign_up_loading"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginStart="32dp"
+        android:layout_marginTop="64dp"
+        android:layout_marginEnd="32dp"
+        android:layout_marginBottom="64dp"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.5" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+
+

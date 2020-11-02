@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    android:layout_marginBottom="@dimen/small_margin">
+    <LinearLayout android:layout_width="match_parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        android:layout_height="wrap_content"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:orientation="vertical"
+        android:layout_marginTop="@dimen/activity_vertical_margin"
+        android:layout_marginStart="@dimen/activity_horizontal_margin"
+        >
+
+
+        <TextView
+            android:id="@+id/text_buyer_name_checkout"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Mohamed Mahmoud "
+            android:textStyle="bold"
+            android:textColor="@color/black"
+            app:layout_constraintTop_toTopOf="parent"
+            android:visibility="gone"
+            />
+        <TextView
+            android:id="@+id/text_location_checkout"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toBottomOf="@id/text_buyer_name_checkout"
+            app:layout_constraintStart_toStartOf="@id/text_buyer_name_checkout"
+            android:fontFamily="@font/poppins"
+            android:text="Location Address"
+
+            />
+
+        <TextView
+            android:id="@+id/text_city_checkout"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toBottomOf="@id/text_buyer_name_checkout"
+            app:layout_constraintStart_toStartOf="@id/text_buyer_name_checkout"
+            android:fontFamily="@font/poppins"
+            android:text="Cairo"
+
+            />
+        <TextView
+            android:id="@+id/text_country_checkout"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toBottomOf="@id/text_buyer_name_checkout"
+            app:layout_constraintStart_toStartOf="@id/text_buyer_name_checkout"
+            android:fontFamily="@font/poppins"
+            android:text="Egypt"
+
+            />
+
+        <TextView
+            android:id="@+id/text_landmark_checkout"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toBottomOf="@id/text_buyer_name_checkout"
+            app:layout_constraintStart_toStartOf="@id/text_buyer_name_checkout"
+            android:fontFamily="@font/poppins"
+            android:text="LandMark"
+            android:visibility="gone"
+            />
+
+    </LinearLayout>
+<Button
+    android:id="@+id/btn_edit_address"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:background="@color/my_transparent"
+    android:text="@string/Edit"
+    android:textColor="@color/colorPrimary"
+    app:layout_constraintEnd_toEndOf="parent"
+    app:layout_constraintTop_toTopOf="parent"
+
+    />
+    <Button
+
+        android:id="@+id/btn_delete_address"
+        android:layout_width="@dimen/size_24"
+        android:layout_height="@dimen/size_24"
+        app:layout_constraintEnd_toEndOf="@id/btn_edit_address"
+        app:layout_constraintStart_toStartOf="@id/btn_edit_address"
+        app:layout_constraintTop_toBottomOf="@id/btn_edit_address"
+        android:layout_marginTop="@dimen/activity_vertical_margin"
+        android:background="@drawable/ic_delete"
+        />
+    <Button
+        android:id="@+id/btn_set_default_address"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/btn_delete_address"
+        android:layout_marginTop="@dimen/activity_vertical_margin"
+        android:background="@drawable/button_rounded"
+        android:backgroundTint="@color/black"
+        android:textColor="@color/white"
+        android:paddingHorizontal="@dimen/sections_margin"
+        android:text="@string/set_default"
+        android:textAllCaps="false"
+        />
+    </androidx.constraintlayout.widget.ConstraintLayout>

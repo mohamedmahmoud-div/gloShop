@@ -1,0 +1,156 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<androidx.core.widget.NestedScrollView android:id="@+id/container"
+
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_gravity="center"
+    >
+
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <EditText
+            android:id="@+id/username"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="24dp"
+            android:layout_marginTop="@dimen/activity_vertical_margin"
+            android:layout_marginEnd="24dp"
+            android:hint="@string/prompt_email"
+            android:inputType="textEmailAddress"
+            android:selectAllOnFocus="true"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <EditText
+            android:id="@+id/password"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="24dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="24dp"
+            android:hint="@string/prompt_password"
+            android:imeActionLabel="@string/action_sign_in_short"
+            android:imeOptions="actionDone"
+            android:inputType="textPassword"
+            android:selectAllOnFocus="true"
+            android:textAlignment="viewStart"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/username" />
+
+        <Button
+            android:id="@+id/btn_login"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="start"
+            android:layout_marginStart="48dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginEnd="48dp"
+            android:layout_marginBottom="64dp"
+            android:enabled="false"
+            android:background="@drawable/button_rounded"
+            android:textColor="@color/white"
+            android:text="@string/sign_in"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/password"
+            app:layout_constraintVertical_bias="0.2" />
+        <TextView
+            android:id="@+id/text_forget_password"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toBottomOf="@id/btn_login"
+            app:layout_constraintStart_toStartOf="@id/btn_login"
+            android:layout_marginTop="@dimen/small_margin"
+            android:fontFamily="@font/poppins_medium"
+            android:textColor="@color/black"
+            android:text="@string/forget_password"
+            />
+
+        <com.facebook.login.widget.LoginButton
+            android:id="@+id/btn_login_fb"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="48dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginEnd="48dp"
+            android:layout_marginBottom="64dp"
+            android:enabled="true"
+            android:background="@drawable/button_rounded"
+            android:backgroundTint="@color/white"
+            android:textColor="#4285F4"
+            android:text="@string/sign_with_facebook"
+            app:layout_constraintTop_toBottomOf="@id/text_forget_password"
+            />
+        <ImageView
+            android:layout_width="@dimen/size_32"
+            android:layout_height="@dimen/size_32"
+            app:layout_constraintTop_toTopOf="@id/btn_login_fb"
+            app:layout_constraintBottom_toBottomOf="@id/btn_login_fb"
+            app:layout_constraintStart_toStartOf="@id/btn_login_fb"
+            android:layout_marginStart="@dimen/small_margin"
+            android:background="@drawable/ic_facebook"
+            />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toBottomOf="@id/btn_login_fb"
+            app:layout_constraintStart_toStartOf="parent"
+            android:layout_marginStart="48dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginEnd="48dp"
+            android:layout_marginBottom="64dp"
+            android:orientation="horizontal"
+            android:background="@drawable/button_rounded"
+            android:gravity="center_vertical"
+            android:backgroundTint="#4285F4"    >
+            <ImageView
+                android:layout_width="@dimen/size_32"
+                android:layout_height="@dimen/size_32"
+                app:layout_constraintTop_toTopOf="@id/btn_login_gmail"
+                android:background="@drawable/ic_gmail"
+                android:layout_marginEnd="@dimen/sections_margin"
+                android:layout_marginStart="@dimen/small_margin"
+                />
+            <Button
+                android:id="@+id/btn_login_gmail"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/sections_margin"
+                android:enabled="true"
+                android:background="@drawable/button_rounded"
+                android:backgroundTint="#4285F4"
+                android:textColor="@color/white"
+                android:text="@string/sign_with_gmail"
+                app:layout_constraintStart_toStartOf="parent"
+                />
+
+        </LinearLayout>
+
+        <ProgressBar
+            android:id="@+id/loading"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginStart="32dp"
+            android:layout_marginTop="64dp"
+            android:layout_marginEnd="32dp"
+            android:layout_marginBottom="64dp"
+            android:visibility="gone"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="@+id/password"
+            app:layout_constraintStart_toStartOf="@+id/password"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.3" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</androidx.core.widget.NestedScrollView>
+

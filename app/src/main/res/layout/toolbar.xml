@@ -1,0 +1,33 @@
+<androidx.appcompat.widget.Toolbar android:id="@+id/app_bar"
+    app:layout_constraintTop_toTopOf="parent"
+    android:layout_width="match_parent"
+    android:layout_height="?attr/actionBarSize"
+    tools:ignore="MissingConstraints"
+    app:title="@string/Login"
+    android:background="#f1f9f5"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_bar_circle" />
+
+        <TextView
+            android:id="@+id/text_title_bar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:text="Login"
+            android:textAllCaps="true"
+            android:textStyle="bold"
+            android:textColor="@color/colorPrimary"
+            />
+
+    </RelativeLayout>
+</androidx.appcompat.widget.Toolbar>

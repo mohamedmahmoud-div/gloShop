@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#FF9FF5</color>
+    <color name="colorPrimaryDark">#FA65EB</color>
+    <color name="white">#FFFFFF</color>
+    <color name="colorAccent">#03DAC5</color>
+    <color name="black">#000000</color>
+    <color name="grey">#574B4B</color>
+    <color name="red">#B72828</color>
+    <color name="red_rate">#FF6969</color>
+    <color name="transparent">#80000000</color>
+    <color name="background">#D8D8D8</color>
+
+    <color name="black_overlay">#66000000</color>
+    <color name="cyan">#2dbff1</color>
+    <color name="light_grey">#dddddd</color>
+    <color name="visa_blue">#318fb5</color>
+    <color name="orange">#E7A646</color>
+    <color name="black_faded">#91000000</color>
+    <color name="product_name_color">#515C6F</color>
+    <color name="dark_grey_color">#727C8E</color>
+    <color name="shadow">#00FFFFFF</color>
+    <color name="my_transparent">#00000000</color>
+    <color name="gree">#14AC38</color>
+    <color name="blue">#2F68C7</color>
+    <color name="parent_transpernt">#51DDDDDD</color>
+    <color name="shimmer">#dddddd</color>
+
+</resources>
+

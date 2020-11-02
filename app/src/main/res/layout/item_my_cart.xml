@@ -1,0 +1,208 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="#00FFFFFF"
+    android:orientation="vertical"
+    android:layout_marginBottom="@dimen/small_margin"
+    >
+
+    <androidx.cardview.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:cardCornerRadius="10dp"
+        app:cardElevation="30dp"
+        app:layout_constraintTop_toTopOf="parent"
+
+        app:layout_constraintStart_toStartOf="parent"
+        app:cardBackgroundColor="@color/white"
+        android:layout_margin="@dimen/activity_horizontal_margin"
+
+        >
+<androidx.constraintlayout.widget.ConstraintLayout
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="horizontal"
+    android:layout_marginEnd="@dimen/activity_horizontal_margin">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/shape_layout"
+        android:layout_width="106dp"
+        android:layout_height="106dp"
+        android:background="@color/shadow"
+        android:layout_centerVertical="true"
+        android:layout_centerHorizontal="true"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:layout_marginTop="@dimen/small_margin"
+        android:layout_marginBottom="@dimen/small_margin"
+        android:layout_marginStart="@dimen/small_margin"
+
+        >
+        <androidx.cardview.widget.CardView
+            android:layout_width="@dimen/image_size_100"
+            android:layout_height="@dimen/image_size_100"
+            app:layout_constraintTop_toTopOf="parent"
+
+            app:layout_constraintStart_toStartOf="parent"
+            app:cardElevation="30dp"
+            app:cardCornerRadius="50dp"
+            >
+            <ImageView
+                android:id="@+id/image_my_cart"
+                android:layout_width="@dimen/image_size_100"
+                android:layout_height="@dimen/image_size_100"
+                android:background="@color/white"
+                android:scaleType="centerCrop"
+
+                />
+        </androidx.cardview.widget.CardView>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    
+
+
+    <com.google.android.material.textview.MaterialTextView
+        android:id="@+id/text_my_cart_product_name"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/small_margin"
+        android:layout_marginTop="@dimen/fragment_vertical_margin"
+        android:fontFamily="@font/poppins_bold"
+        app:layout_constraintEnd_toStartOf="@id/btn_delete"
+        android:layout_marginEnd="@dimen/activity_vertical_margin"
+        android:lines="1"
+        android:text="LapTop"
+        android:textColor="@color/black"
+        android:textSize="@dimen/subtitle"
+        app:layout_constraintStart_toEndOf="@id/shape_layout"
+        app:layout_constraintTop_toTopOf="@id/shape_layout" />
+
+<Button
+
+    android:id="@+id/btn_delete"
+    android:layout_width="@dimen/size_24"
+    android:layout_height="@dimen/size_24"
+    app:layout_constraintEnd_toEndOf="parent"
+    app:layout_constraintTop_toTopOf="@id/text_my_cart_product_name"
+    android:layout_marginEnd="@dimen/small_margin"
+    android:background="@drawable/ic_delete"
+    />
+    <TextView
+        android:id="@+id/text_store_quantity"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/btn_delete"
+        android:textColor="@color/red_rate"
+        android:fontFamily="@font/poppins"
+        android:layout_marginTop="@dimen/small_margin"
+        android:layout_marginEnd="@dimen/small_margin"
+        android:text="@string/remaining_in_stock"
+        android:visibility="gone"
+        />
+    <com.google.android.material.textview.MaterialTextView
+        android:id="@+id/text_my_cart_category_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/small_margin"
+        android:fontFamily="@font/poppins_light"
+        android:lines="1"
+        android:text="@string/landmark"
+        android:textColor="@color/product_name_color"
+        android:textSize="@dimen/subtitle"
+        app:layout_constraintStart_toEndOf="@id/shape_layout"
+        app:layout_constraintTop_toBottomOf="@id/text_my_cart_product_name"
+        />
+    <TextView
+        android:id="@+id/text_my_cart_price"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/poppins_bold"
+        android:text="5000"
+        android:textColor="@color/product_name_color"
+        android:textSize="@dimen/subtitle"
+        app:layout_constraintStart_toStartOf="@id/text_my_cart_category_name"
+        app:layout_constraintTop_toBottomOf="@id/text_my_cart_category_name" />
+    <TextView
+        android:id="@+id/text_my_cart_le"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/poppins_bold"
+        android:text="@string/le"
+        android:textColor="@color/product_name_color"
+        android:textSize="@dimen/subtitle"
+        app:layout_constraintStart_toEndOf="@id/text_my_cart_price"
+        app:layout_constraintTop_toBottomOf="@id/text_my_cart_category_name" />
+    <LinearLayout
+        android:id="@+id/layout_quantity_my_cart"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintTop_toBottomOf="@id/text_my_cart_le"
+        app:layout_constraintStart_toStartOf="@id/text_my_cart_category_name"
+        android:gravity="center"
+        android:padding="@dimen/small_margin"
+        >
+<Button
+    android:id="@+id/button_minus_my_cart"
+    android:layout_width="@dimen/size_24"
+    android:layout_height="@dimen/size_24"
+    android:background="@drawable/minus"
+    />
+        <TextView
+            android:id="@+id/text_piece_count"
+            android:layout_marginStart="@dimen/activity_horizontal_margin"
+            android:layout_width="64dp"
+            android:layout_height="64dp"
+            android:lines="1"
+            android:gravity="center"
+            android:textSize="@dimen/subtitle"
+            android:text="1"
+            android:background="@color/white"
+            android:layout_marginEnd="@dimen/small_margin"
+            />
+        <Button
+            android:id="@+id/button_plus_my_cart"
+            android:layout_width="@dimen/size_24"
+            android:layout_height="@dimen/size_24"
+            android:background="@drawable/plus"
+            />
+
+    </LinearLayout>
+
+<TextView
+    android:id="@+id/total_header"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+        app:layout_constraintEnd_toEndOf="parent"
+    app:layout_constraintTop_toTopOf="@id/layout_quantity_my_cart"
+    app:layout_constraintBottom_toBottomOf="@id/layout_quantity_my_cart"
+    android:text="@string/total"
+    />
+
+
+    <TextView
+        android:id="@+id/total_product_count"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+    app:layout_constraintEnd_toStartOf="@id/total_product_le"
+        app:layout_constraintTop_toBottomOf="@id/total_header"
+        android:textColor="@color/red_rate"
+        android:text="500"
+        />
+    <TextView
+        android:id="@+id/total_product_le"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintEnd_toEndOf="parent"
+         app:layout_constraintTop_toBottomOf="@id/total_header"
+        android:textColor="@color/red_rate"
+        android:text="@string/le"
+        />
+</androidx.constraintlayout.widget.ConstraintLayout>
+
+    </androidx.cardview.widget.CardView>
+</LinearLayout>

@@ -1,0 +1,143 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/swipe_refresh_search"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:shimmer="http://schemas.android.com/apk/res-auto"
+    >
+    <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context=".ui.main.search.SearchFragment"
+        android:orientation="vertical"
+        xmlns:shimmer="http://schemas.android.com/apk/res-auto"
+
+        android:background="@color/white"
+        android:id="@+id/fragment_home_search">
+
+        <!--  <androidx.appcompat.widget.SearchView
+              android:id="@+id/search_ac_fragment_search_view"
+              android:layout_width="match_parent"
+              android:layout_height="wrap_content"
+              app:layout_constraintEnd_toEndOf="parent"
+              android:layout_marginEnd="@dimen/activity_vertical_margin"
+              />-->
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/layout_filter_header"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            android:background="@color/white">
+            <TextView
+                android:id="@+id/text_items_count"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                android:fontFamily="@font/poppins_bold"
+                android:textColor="@color/red_rate"
+                android:textSize="@dimen/font_sub_title"
+                android:layout_margin="@dimen/small_margin"
+                android:visibility="gone"
+                />
+            <TextView
+                android:id="@+id/text_header_product_count"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_constraintStart_toEndOf="@id/text_items_count"
+                app:layout_constraintTop_toTopOf="parent"
+                android:text="@string/items"
+                android:fontFamily="@font/poppins_medium"
+                android:textSize="@dimen/title"
+                android:layout_margin="@dimen/small_margin"
+                android:visibility="gone"
+                />
+            <Button
+                android:id="@+id/btn_filter_search"
+                android:layout_width="@dimen/size_24"
+                android:layout_height="@dimen/size_24"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                android:layout_marginTop="@dimen/small_margin"
+                android:layout_marginEnd="@dimen/activity_horizontal_margin"
+                android:background="@drawable/ic_filter"
+                android:backgroundTint="@color/grey"    />
+
+            <Button
+                android:id="@+id/btn_sort_search"
+                android:layout_width="@dimen/size_24"
+                android:layout_height="@dimen/size_24"
+                app:layout_constraintEnd_toStartOf="@id/btn_filter_search"
+                app:layout_constraintTop_toTopOf="parent"
+                android:layout_marginTop="@dimen/small_margin"
+                android:layout_marginEnd="@dimen/activity_horizontal_margin"
+                android:background="@drawable/ic_sort"
+                android:backgroundTint="@color/grey"
+                />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+        <com.facebook.shimmer.ShimmerFrameLayout
+            android:id="@+id/shimmerFrameLayout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            android:layout_marginTop="15dp"
+            android:orientation="vertical"
+            shimmer:duration="800"
+            >
+
+            <!-- Adding 7 rows of placeholders -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                >
+                <include layout="@layout/data_placeholder_layout" />
+                <include layout="@layout/data_placeholder_layout" />
+                <include layout="@layout/data_placeholder_layout" />
+                <include layout="@layout/data_placeholder_layout" />
+                <include layout="@layout/data_placeholder_layout" />
+                <include layout="@layout/data_placeholder_layout" />
+                <include layout="@layout/data_placeholder_layout" />
+            </LinearLayout>
+
+        </com.facebook.shimmer.ShimmerFrameLayout>
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recyclerview_search_product"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:background="@color/white"
+            app:layout_constraintTop_toBottomOf="@id/layout_filter_header"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            android:layout_marginTop="@dimen/activity_vertical_margin"
+            android:layout_marginEnd="@dimen/activity_horizontal_margin"
+            android:visibility="gone"
+            />
+        <include layout="@layout/bottom_sheet_filter"/>
+        <TextView
+            android:id="@+id/text_no_search_in_store"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            android:text="@string/sorry_no_products_in_our_store"
+            android:fontFamily="@font/poppins_bold"
+            android:textSize="@dimen/large_text"
+            android:textColor="@color/colorPrimary"
+            android:layout_marginStart="@dimen/activity_vertical_margin"
+            android:layout_marginEnd="@dimen/activity_vertical_margin"
+            android:visibility="gone"
+            />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
+

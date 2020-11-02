@@ -1,0 +1,189 @@
+<resources>
+    <string name="app_name">Hajar Tareq</string>
+    <string name="title_home">Home</string>
+    <string name="title_search">Search</string>
+    <string name="title_cart">Carts</string>
+    <string name="title_profile">Profile</string>
+    <string name="deal_text">DealName</string>
+    <string name="collection">Collection</string>
+    <string name="hot_deals">Hot Deals</string>
+    <string name="arrival">New Arrival</string>
+    <string name="top_selling">Top Selling</string>
+    <string name="title_activity_fullscreen">FullscreenActivity</string>
+    <string name="dummy_button">Dummy Button</string>
+    <string name="dummy_content">DUMMY\nCONTENT</string>
+    <string name="search">Search</string>
+    <string name="title_activity_login">LoginActivity</string>
+    <string name="prompt_email">Email Address</string>
+    <string name="prompt_password">Password</string>
+    <string name="action_sign_in">Sign in or register</string>
+    <string name="action_sign_in_short">Sign in</string>
+    <string name="welcome">"Welcome"</string>
+    <string name="invalid_username">Not a valid username</string>
+    <string name="invalid_password">Password must be > 7 characters</string>
+    <string name="invalid_confirm_password">Confirm Password must be identical</string>
+    <string name="invalid_fullname">Please Type You Name</string>
+    <string name="invalid_email">Invalid Email</string>
+    <string name="invalid_date">Invalid Date</string>
+
+    <string name="login_failed">"Login failed"</string>
+    <string name="proceed_to_checkout">Checkout</string>
+    <string name="Login">Login</string>
+    <string name="sign_in">Sign In</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="reviews">Reviews</string>
+    <string name="le">LE</string>
+    <string name="description">Description</string>
+    <string name="related_products">Related Products</string>
+    <string name="landmark">LandMark</string>
+    <string name="order_notes">Order Notes</string>
+    <string name="visa">Visa</string>
+    <string name="cash">Cash</string>
+    <string name="sub_total">Sub Total</string>
+    <string name="egp">Egp</string>
+    <string name="save">Save</string>
+    <string name="card_number">Card number</string>
+    <string name="expire_date_mm_yy">Expire Date MM/YY</string>
+    <string name="card_name">Name(as it appears on your card)</string>
+    <string name="address">Address</string>
+    <string name="grand_total">Grand Total</string>
+    <string name="place_order">Place Order</string>
+    <string name="shipping_address">Shipping Address</string>
+    <string name="product">Products</string>
+    <string name="mycart">MyCarts</string>
+    <string name="checkout_title">Complete Order</string>
+    <string name="choose_credit_card">Choose Credit Card</string>
+    <string name="count">count</string>
+    <string name="filter">Filter</string>
+    <string name="filter_by">Filter By</string>
+    <string name="apply_filter">Apply Filter</string>
+    <string name="offers">Offers</string>
+    <string name="title_activity_base_register_activty">BaseRegisterActivty</string>
+    <string name="tab_text_1">Login</string>
+    <string name="tab_text_2">Signup</string>
+    <string name="title_activity_base_register">BaseRegisterActivity</string>
+    <string name="forget_password">Forget Password</string>
+    <string name="sign_with_facebook">Sign With Facebook</string>
+    <string name="sign_with_gmail">Sign with Gmail</string>
+    <string name="male">male</string>
+    <string name="female">female</string>
+    <string name="username">username</string>
+    <string name="confirm_password">Confirm Password</string>
+    <string name="select_color">Select Color</string>
+    <string name="birthdate">BirthDate</string>
+    <string name="total">Total</string>
+    <string name="edit_profile">Edit Profile</string>
+    <string name="all_my_order">All My Order</string>
+    <string name="pending_shipments">Pending Shipments</string>
+    <string name="my_address_book">My Address Book</string>
+    <string name="wish_list">Wish List</string>
+    <string name="polices_and_terms">Polices And terms</string>
+    <string name="about_us">About us</string>
+    <string name="contact_us">Contact us</string>
+    <string name="logout">Logout</string>
+    <string name="order_placed">Order Placed!</string>
+    <string name="order_success_body">Your order was placed successfully. For \n more details, check All My Orders page \n under Profile tab</string>
+    <string name="payment_method">Payment Method</string>
+    <string name="change_location">Change</string>
+    <string name="num_of_building">Num oF Building</string>
+    <string name="select_country">Select Country:</string>
+    <string name="select_city">Select City:</string>
+    <string name="Edit">edit</string>
+    <string name="add">Add</string>
+    <string name="you_don_t_have_any_adddress_please_add_one">You Don\'t Have Any Adddress please add one</string>
+    <string name="post_code">Post Code</string>
+    <string name="region">Region</string>
+    <string name="phone_number">Phone Number</string>
+    <string name="your_carts_is_empty">Your Carts Is Empty</string>
+    <string name="order_id">Order ID</string>
+    <string name="order_date">Order Date</string>
+    <string name="status">Status</string>
+    <string name="shipping_fees">Shipping Fees</string>
+    <string name="status_orderd">Ordered</string>
+    <string name="status_shipped">Shipped</string>
+    <string name="status_delievery">On Delievery</string>
+    <string name="you_don_t_have_orders_yet">You Don\'t have Orders yet</string>
+    <string name="you_have_t_items_in_wish_list">You have\'t items in Wish List</string>
+    <string name="no_reviews">No Reviews Yet</string>
+    <string name="no_search_items">Product Not found</string>
+    <string name="add_cart">Add To Cart</string>
+    <string name="remove_cart">Remove From Cart</string>
+    <string name="confirm_payment">Confirm Payment</string>
+    <string name="arrival_date">Arrival Date</string>
+    <string name="set_default">Set Default</string>
+    <string name="click_here_to_select_your_address">Click Here To Select Your Address</string>
+    <string name="shipments">Shipments</string>
+    <string name="facebook_app_id" translatable="false">808175049935867</string>
+    <string name="fb_login_protocol_scheme" translatable="false">fb808175049935867</string>
+    <string name="please_check_internet_connection">Please Check Internet Connection</string>
+    <string name="complete_sign_up">Complete Sign Up</string>
+    <string name="sign_up">Sign Up</string>
+    <string name="signup_with_facebook">SignUp With FaceBook</string>
+    <string name="sign_up_with_gmail">Sign Up With Gmail</string>
+    <string name="gender">Gender</string>
+    <string name="items">items</string>
+    <string name="my_order">My Orders</string>
+    <string name="host_url" translatable="false">161.35.113.112:8024</string>
+    <string name="scheme" translatable="false">http</string>
+    <string name="enter_new_password">Enter New Password</string>
+    <string name="save_new_password">Save New Password</string>
+    <string name="enter_your_email">Enter Your Email</string>
+    <string name="send_to_my_email">Send To My Email</string>
+    <string name="address_header">Address:</string>
+    <string name="phone_header">Phone:</string>
+    <string name="email_header">Email:</string>
+    <string name="leave_a_comment">Leave A Comment</string>
+    <string name="your_name">Your Name</string>
+    <string name="your_email">Your Email</string>
+    <string name="your_message">Your Message</string>
+    <string name="social_links">Social Links</string>
+    <string name="send_comment">Send Comment</string>
+    <string name="empty_message">Pleas Type Your Message</string>
+    <string name="message_send_success">Message Sent</string>
+    <string name="sorry_no_products_in_our_store"> No  products available  in our Store</string>
+    <string name="select_gateway">Please Select Your Payment Platform</string>
+    <string name="sorry">Sorry..!</string>
+    <string name="search_items_you_need_and_add_it_to_cart">search items you need and add it to cart</string>
+    <string name="out_of_stock">Out Of Stock</string>
+    <string name="remaining_in_stock">remaining In Stock</string>
+    <string name="order_not_completed">Order Not Completed</string>
+    <string name="you_can_easily_order_it_any_time">you can easily order it any time</string>
+    <string name="your_order">Your order cost</string>
+    <string name="already_ordered">You already order it</string>
+    <string name="address_location_wron">Address Location Wrong</string>
+    <string name="order_proceed">Your Order Has Been proceed</string>
+    <string name="added_to_cart">Added To Cart</string>
+    <string name="percentage">%</string>
+    <string name="fullname">FullName</string>
+    <string name="address_selected">Address Selected</string>
+    <string name="apply_promo_code">Apply promo code</string>
+    <string name="insert_promo_code">please insert promo code</string>
+    <string name="discount">Discount</string>
+
+    <string-array name="Countries">
+        <item>Java</item>
+        <item>Kotlin</item>
+        <item>Swift</item>
+        <item>Python</item>
+        <item>Scala</item>
+        <item>Perl</item>
+    </string-array>
+    <string-array name="Cities">
+        <item>Cairo</item>
+        <item>Alex</item>
+        <item>Alex</item>
+        <item>Cairo</item>
+        <item>Alex</item>
+        <item>Perl</item>
+    </string-array>
+
+    <string-array name="CitiesJoB">
+        <item>Sate</item>
+        <item>Sate</item>
+        <item>Sate</item>
+        <item>Sate</item>
+        <item>Sate</item>
+        <item>Sate</item>
+    </string-array>
+</resources>

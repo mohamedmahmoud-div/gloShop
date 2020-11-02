@@ -1,0 +1,130 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context=".ui.main.profile.PendingShipmentFragment"
+    android:background="@color/light_grey">
+
+    <!-- TODO: Update blank fragment layout -->
+
+    <androidx.appcompat.widget.Toolbar android:id="@+id/all_shipment_bar"
+        app:layout_constraintTop_toTopOf="parent"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        tools:ignore="MissingConstraints"
+        app:title="@string/Login"
+        android:background="@color/colorPrimary"
+
+        >
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+
+            >
+<!--
+
+            <TextView
+                android:id="@+id/title_your"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/poppins_bold"
+                android:textSize="@dimen/title"
+                android:text="Your"
+                android:textStyle="bold"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"
+                android:layout_marginStart="@dimen/activity_horizontal_margin"
+                android:textColor="@color/white"
+                android:layout_marginEnd="@dimen/sections_margin"
+                />
+            <TextView
+                android:id="@+id/title_logo"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Logo"
+                app:layout_constraintStart_toEndOf="@id/title_your"
+
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"
+                android:textColor="@color/orange"
+                android:fontFamily="@font/poppins_bold"
+                android:textSize="@dimen/title"
+                />
+-->
+            <ImageView
+                android:layout_width="80dp"
+                android:layout_height="96dp"
+                app:layout_constraintStart_toStartOf="parent"
+                android:background="@drawable/hajar_bar_logo"
+                app:layout_constraintTop_toTopOf="parent"/>
+            <TextView
+                android:id="@+id/text_carts_bar_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"
+                android:text="@string/shipments"
+                android:fontFamily="@font/poppins_bold"
+                android:textColor="@color/white"
+                android:lines="1"
+                android:textSize="@dimen/font_title"
+                />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.appcompat.widget.Toolbar>
+
+
+    <Button
+        android:id="@+id/btn_order_filter"
+        android:layout_width="@dimen/size_24"
+        android:layout_height="@dimen/size_24"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/all_shipment_bar"
+        android:layout_margin="@dimen/activity_vertical_margin"
+        android:background="@drawable/ic_filter"
+        />
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recycler_status_filter"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@id/btn_order_filter"
+        app:layout_constraintEnd_toEndOf="@id/btn_order_filter"
+        android:visibility="gone"
+        />
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recycler_pending_shipments"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/recycler_status_filter"
+        android:layout_marginVertical="@dimen/activity_vertical_margin"
+        />
+    <TextView
+        android:id="@+id/text_orders_empty"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        android:layout_marginHorizontal="@dimen/activity_horizontal_margin"
+        android:text="@string/you_don_t_have_orders_yet"
+        android:textSize="@dimen/large_text"
+        android:visibility="gone"
+        />
+    <ProgressBar
+        android:id="@+id/progress_circular_my_order"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        />
+</androidx.constraintlayout.widget.ConstraintLayout>

@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="background">#D8D8D8</color>
+    <color name="visa_blue">#318fb5</color>
+    <color name="shadow">#00FFFFFF</color>
+    <color name="gree">#14AC38</color>
+    <color name="parent_transpernt">#51DDDDDD</color>
+    <color name="shimmer">#dddddd</color>
+
+</resources>
