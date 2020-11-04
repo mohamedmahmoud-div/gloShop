@@ -5,10 +5,10 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:background="@color/shadow"
     android:orientation="vertical"
-
+android:layout_margin="@dimen/small_margin"
     >
     <androidx.cardview.widget.CardView
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="match_parent"
         app:cardCornerRadius="10dp"
         app:cardElevation="30dp"
@@ -24,7 +24,7 @@
 
             <ImageView
                 android:id="@+id/imageView_collection"
-                android:layout_width="@dimen/image_size_100"
+                android:layout_width="match_parent"
                 android:layout_height="@dimen/image_size_100"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"

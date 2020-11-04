@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="colorPrimary">#FF9FF5</color>
-    <color name="colorPrimaryDark">#FA65EB</color>
+    <color name="colorPrimary">#FC6E0A</color>
+    <color name="colorPrimaryDark">#FC6E0A</color>
     <color name="white">#FFFFFF</color>
     <color name="colorAccent">#03DAC5</color>
     <color name="black">#000000</color>
@@ -25,6 +25,8 @@
     <color name="blue">#2F68C7</color>
     <color name="parent_transpernt">#51DDDDDD</color>
     <color name="shimmer">#dddddd</color>
+    <color name="startGradientColor">#E9E373</color>
+    <color name="endGradientColor">#FFFFFF</color>
 
 </resources>
 

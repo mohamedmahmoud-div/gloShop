@@ -17,6 +17,7 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import androidx.navigation.NavController
+import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.treecode.GloShop.R
 import com.treecode.GloShop.data.api.RetrofitBuilder
@@ -52,6 +53,7 @@ import kotlinx.android.synthetic.main.fragment_product_details.*
 
 class HomeFragment : Fragment() , RecyclerViewCallback {
 
+    private lateinit var gridManager: GridLayoutManager
     private lateinit var handler: Handler
     private lateinit var homeViewModel: HomeViewModel
     private lateinit var dealsAdapter:HotDealsAdapter
@@ -74,6 +76,8 @@ class HomeFragment : Fragment() , RecyclerViewCallback {
     var navController: NavController? = null
     companion object {
         fun newInstance() = HomeFragment()
+        var collectionWidth = 0
+
     }
     // TODO: 8/16/2020 MAKE shimmer layout for all sections
 
@@ -443,9 +447,10 @@ recyclerview_deal_horizontal.layoutManager = customScrollManger
         var flag = true;
         val speedScroll = 1200
 
+         gridManager = GridLayoutManager(this.context, 2,GridLayoutManager.VERTICAL,false)
 
-
-        recyclerview_collections_horizontal.layoutManager =  LinearLayoutManager(this.context,LinearLayoutManager.HORIZONTAL,false)
+        recyclerview_collections_horizontal.layoutManager =  gridManager
+            //LinearLayoutManager(this.context,LinearLayoutManager.HORIZONTAL,false)
         categoryAdapter =
             CateogiesAdapter(
                 categoryList

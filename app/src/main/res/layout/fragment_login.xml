@@ -9,10 +9,10 @@
     android:layout_gravity="center"
     >
 
-
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        >
 
         <EditText
             android:id="@+id/username"
@@ -73,6 +73,7 @@
             android:fontFamily="@font/poppins_medium"
             android:textColor="@color/black"
             android:text="@string/forget_password"
+            android:visibility="gone"
             />
 
         <com.facebook.login.widget.LoginButton
@@ -89,6 +90,7 @@
             android:textColor="#4285F4"
             android:text="@string/sign_with_facebook"
             app:layout_constraintTop_toBottomOf="@id/text_forget_password"
+            android:visibility="gone"
             />
         <ImageView
             android:layout_width="@dimen/size_32"
@@ -98,7 +100,7 @@
             app:layout_constraintStart_toStartOf="@id/btn_login_fb"
             android:layout_marginStart="@dimen/small_margin"
             android:background="@drawable/ic_facebook"
-            />
+           android:visibility="gone" />
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -120,7 +122,7 @@
                 android:background="@drawable/ic_gmail"
                 android:layout_marginEnd="@dimen/sections_margin"
                 android:layout_marginStart="@dimen/small_margin"
-                />
+              android:visibility="gone"  />
             <Button
                 android:id="@+id/btn_login_gmail"
                 android:layout_width="wrap_content"
@@ -132,7 +134,7 @@
                 android:textColor="@color/white"
                 android:text="@string/sign_with_gmail"
                 app:layout_constraintStart_toStartOf="parent"
-                />
+               android:visibility="gone" />
 
         </LinearLayout>
 

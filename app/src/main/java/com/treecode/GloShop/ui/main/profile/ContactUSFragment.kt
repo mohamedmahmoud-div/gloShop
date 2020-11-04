@@ -146,7 +146,6 @@ class ContactUSFragment : Fragment() {
         })
     }
     private fun dismissFragment(){
-
     }
     fun getOpenFacebookIntent(): Intent? {
         return try {

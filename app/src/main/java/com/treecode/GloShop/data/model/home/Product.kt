@@ -20,7 +20,7 @@ For support, please feel free to contact me at https://www.linkedin.com/in/syeda
 
 	 @SerializedName("id") val id: Int,
 	 @SerializedName("name") val name: String,
-	 @SerializedName("price") val price: Int,
+	 @SerializedName("price") val price: Double,
 	 @SerializedName("offer") val offer: OptionalOffer?,
 	 @SerializedName("discount") val discount: Int?,
 	 @SerializedName("main_img") val main_img: String,

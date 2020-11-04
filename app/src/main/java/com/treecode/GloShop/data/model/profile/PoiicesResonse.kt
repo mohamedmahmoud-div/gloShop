@@ -10,5 +10,5 @@ class PoiicesResonse (
 )
 class PolicesData(
     @SerializedName("details")
-    val details:String
+    val details:String?
 )

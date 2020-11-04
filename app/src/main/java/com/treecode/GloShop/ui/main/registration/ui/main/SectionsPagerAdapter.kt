@@ -24,7 +24,7 @@ class SectionsPagerAdapter(private val context: Context, fm: FragmentManager) :
         var fragment: Fragment? = null
         when (position) {
             0 -> fragment = LoginFragment()
-            1 -> fragment = SignupFragment()
+           // 1 -> fragment = SignupFragment()
         }
         return fragment!!
     }
@@ -35,6 +35,6 @@ class SectionsPagerAdapter(private val context: Context, fm: FragmentManager) :
 
     override fun getCount(): Int {
         // Show 2 total pages.
-        return 2
+        return 1
     }
 }

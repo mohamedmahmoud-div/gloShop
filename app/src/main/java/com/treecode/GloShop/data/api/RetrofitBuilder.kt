@@ -14,7 +14,7 @@ import java.util.*
 
 object RetrofitBuilder {
 
-     const val BASE_URL = "http://161.35.113.112:8024"
+     const val BASE_URL = "http://gloshop.tree-code.com"
 
      fun getRetrofit(): Retrofit {
         val interceptor = HttpLoggingInterceptor()

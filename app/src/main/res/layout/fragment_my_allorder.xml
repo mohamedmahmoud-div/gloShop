@@ -55,7 +55,7 @@
           android:layout_width="80dp"
           android:layout_height="?attr/actionBarSize"
           app:layout_constraintStart_toStartOf="parent"
-          android:background="@drawable/hajar_bar_logo"
+          android:background="@drawable/iconbar"
           app:layout_constraintTop_toTopOf="parent"/>
       <TextView
           android:id="@+id/text_carts_bar_title"

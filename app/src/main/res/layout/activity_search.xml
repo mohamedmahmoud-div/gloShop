@@ -7,10 +7,6 @@
     tools:context=".ui.main.search.SearchActivity">
 
 
-
-
-
-
     <include
         layout="@layout/item_bottom_navigation"
         android:layout_width="match_parent"

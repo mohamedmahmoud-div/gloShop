@@ -15,7 +15,7 @@
         android:layout_height="?attr/actionBarSize"
         tools:ignore="MissingConstraints"
         app:title="@string/Login"
-        android:background="@color/colorPrimary"
+        android:background="@drawable/gradient_toolbar"
         >
 
         <androidx.constraintlayout.widget.ConstraintLayout
@@ -29,7 +29,7 @@
                 app:layout_constraintStart_toStartOf="parent"
 
                 app:layout_constraintTop_toTopOf="parent"
-                android:background="@drawable/hajar_bar_logo"
+                android:background="@drawable/iconbar"
                 />
 
             <TextView
@@ -38,16 +38,15 @@
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/poppins_bold"
                 android:textSize="@dimen/title"
-                android:text="Your"
+                android:text="GLOSHOP"
                 android:textStyle="bold"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintBottom_toBottomOf="parent"
                 android:layout_marginStart="@dimen/activity_horizontal_margin"
-                android:textColor="@color/white"
-                app:layout_constraintEnd_toStartOf="@id/search_searchvc"
+                android:textColor="@color/black"
+                app:layout_constraintEnd_toEndOf="parent"
                 android:layout_marginEnd="@dimen/sections_margin"
-                android:visibility="gone"
                 />
             <TextView
                 android:id="@+id/title_logo"
