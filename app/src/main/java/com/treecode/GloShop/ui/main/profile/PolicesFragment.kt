@@ -30,6 +30,7 @@ class PolicesFragment : Fragment() {
     // TODO: Rename and change types of parameters
     private var param1: String? = null
     private var param2: String? = null
+    private var aboutUsCall: Call<PoiicesResonse>? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -45,14 +46,18 @@ class PolicesFragment : Fragment() {
     }
     private fun getPolicesData(){
         val apiInterface = RetrofitBuilder.getRetrofit().create(ApiService::class.java)
-        val aboutUsCall = apiInterface.getPolicesORAbout(Constants.URL_POLICES)
-        aboutUsCall.enqueue(object : Callback<PoiicesResonse> {
+         aboutUsCall = apiInterface.getPolicesORAbout(Constants.URL_POLICES)
+        progress_circular.visibility = View.VISIBLE
+        aboutUsCall!!.enqueue(object : Callback<PoiicesResonse> {
             override fun onFailure(call: Call<PoiicesResonse>, t: Throwable) {
+                progress_circular.visibility = View.GONE
 
-                Toasty.error(requireContext(),"Check Internet Connection").show()
+                Toasty.error(requireContext(),getString(R.string.please_check_internet_connection)).show()
             }
 
             override fun onResponse(call: Call<PoiicesResonse>, response: Response<PoiicesResonse>) {
+                progress_circular.visibility = View.GONE
+
                 val poiicesResonse = response.body()
                 if (poiicesResonse != null){
                     val policesData = poiicesResonse.data
@@ -62,6 +67,11 @@ class PolicesFragment : Fragment() {
 
         })
 
+    }
+    override fun onPause() {
+        super.onPause()
+        if (aboutUsCall != null)
+            aboutUsCall!!.cancel()
     }
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,

@@ -111,9 +111,10 @@ private var listOFAddresBook = HashSet<AddressBook>()
            text_address_book_empty.visibility = View.GONE
        }*/
         btn_add_address.setOnClickListener {
-            val pendingShipmentFragment = AddAdressLocationFragment()
+            val addresFragment = AddAdressLocationFragment()
+            addresFragment.isFromProfile = false
             val fc: ActivityFragmentChangeListener? = activity as ActivityFragmentChangeListener?
-            fc?.replaceFragment(pendingShipmentFragment)
+            fc?.replaceFragment(addresFragment)
         }
     }
     private fun popFragment(){
@@ -138,20 +139,28 @@ private var listOFAddresBook = HashSet<AddressBook>()
           }
 
       }
-
-        val token = sessionManager.fetchAuthToken()
+        if(listOFAddresBook.isNullOrEmpty()) {
+            recycler_address_book.visibility = View.GONE
+            text_address_book_empty.visibility = View.VISIBLE
+        }
+            val token = sessionManager.fetchAuthToken()
         if (token != null){
             val tokenToSent = "Token $token"
             val deleteCall = apiInterface.deleteAddressBook(addressID,tokenToSent)
+            loading.visibility = View.VISIBLE
+
             deleteCall.enqueue(object:Callback<LocationRepsonse> {
                 override fun onFailure(call: Call<LocationRepsonse>, t: Throwable) {
-                call.cancel()
+                    loading.visibility = View.GONE
+
+                    call.cancel()
                 }
 
                 override fun onResponse(
                     call: Call<LocationRepsonse>,
                     response: Response<LocationRepsonse>
                 ) {
+                    loading.visibility = View.GONE
 
                 if (response.code() == 200){
 
@@ -178,7 +187,7 @@ private fun getAddressBookFromNetwork(){
             override fun onFailure(call: Call<AddressBookResponse?>, t: Throwable) {
                 loading.visibility = View.GONE
 
-                Toasty.error(requireContext(),"Check Internet Connection",Toasty.LENGTH_LONG,true).show()
+                Toasty.error(requireContext(),getString(R.string.please_check_internet_connection),Toasty.LENGTH_LONG,true).show()
                 call.cancel()
 
             }

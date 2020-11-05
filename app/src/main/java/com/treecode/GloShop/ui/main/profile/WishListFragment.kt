@@ -75,6 +75,8 @@ class WishListFragment : Fragment(),CartItemChanged {
                 wishAdapter.addItems(products)
                 wishAdapter.notifyDataSetChanged()
                 text_wish_empty.visibility = View.GONE
+                image_wish_error.visibility = View.GONE
+
                 return
             }
         }

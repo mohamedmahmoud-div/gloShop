@@ -23,7 +23,7 @@
             android:layout_height="wrap_content">
 
             <ImageView
-                android:layout_width="80dp"
+                android:layout_width="?attr/actionBarSize"
                 android:layout_height="?attr/actionBarSize"
 
                 app:layout_constraintStart_toStartOf="parent"

@@ -12,7 +12,7 @@
       android:layout_height="?attr/actionBarSize"
       tools:ignore="MissingConstraints"
       app:title="@string/Login"
-      android:background="@color/colorPrimary"
+      android:background="@drawable/gradient_toolbar"
 
       >
 
@@ -52,7 +52,7 @@
           />
 -->
       <ImageView
-          android:layout_width="80dp"
+          android:layout_width="?attr/actionBarSize"
           android:layout_height="?attr/actionBarSize"
           app:layout_constraintStart_toStartOf="parent"
           android:background="@drawable/iconbar"
@@ -67,7 +67,7 @@
           app:layout_constraintBottom_toBottomOf="parent"
           android:text="@string/all_my_order"
           android:fontFamily="@font/poppins_bold"
-          android:textColor="@color/white"
+          android:textColor="@color/black"
           android:lines="1"
           android:textSize="@dimen/font_title"
           />

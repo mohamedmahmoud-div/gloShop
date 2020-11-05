@@ -314,6 +314,9 @@ val intent = Intent(activity,ForgetPasswordActivty::class.java)
         val userAccountManger = UserAccountManger(requireContext())
         userAccountManger.saveUser(user)
 
+        val sessionManager = SessionManager(requireContext())
+sessionManager.saveAuthToken(user.token!!)
+
         activity?.finish()
 
 

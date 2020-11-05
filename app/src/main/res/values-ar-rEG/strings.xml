@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name">Hajar Tareq</string>
+    <string name="app_name">Gloshop</string>
     <string name="title_home">الرئيسية</string>
     <string name="title_search">البحث</string>
     <string name="title_cart">السلة</string>
@@ -104,6 +104,8 @@
     <string name="click_here_to_select_your_address">لاختيار العنوان اضغط هنا</string>
     <string name="shipments">الشحنات</string>
     <string name="please_check_internet_connection">تاكد باتصالك بالانترنت</string>
+    <string name="please_check_login">من فضلك سجل الدخول اولا</string>
+
     <string name="complete_sign_up">استكمال التسجيل</string>
     <string name="sign_up">التسجيل</string>
     <string name="signup_with_facebook">انشاء حساب بالفيس بوك</string>
@@ -136,14 +138,21 @@
     <string name="you_can_easily_order_it_any_time">يمكنك الاضافة في اي وقت بسهولة</string>
     <string name="your_order">تكلفة الطلبات </string>
     <string name="already_ordered">لقد قمت بالغعل طلبه</string>
-    <string name="address_location_wron">Address Location Wrong</string>
+    <string name="address_location_wron">العنوان خطأ</string>
     <string name="order_proceed">تم اكتمال الطلب بنجاح</string>
     <string name="added_to_cart">اضافت الي العربة</string>
     <string name="percentage">%</string>
     <string name="fullname">الاسم</string>
     <string name="address_selected">تم اختيار العنوان</string>
-    <string name="apply_promo_code">Apply promo code</string>
+    <string name="apply_promo_code">استخدام الكور</string>
     <string name="insert_promo_code">من فضلك ادخل كود الخصم</string>
-    <string name="discount">Discount</string>
+    <string name="discount">الخصصم</string>
+    <string name="filldata">من فضلك املي البيانات</string>
+    <string name="invalid_post_code">من فضلك ادخل رقم بريدي صحيح</string>
+    <string name="login_first">قم بالتسجيل اولا</string>
+    <string name="invalid_address">من فضلك ادحل ادخل العنوان</string>
+    <string name="invalid_phone">من فضلك ادخل رقم الهاتف صحيح</string>
+    <string name="invalid_region">من فضلك ادحل المنطفة</string>
+    <string name="username_or_email">username or Email</string>
 
 </resources>

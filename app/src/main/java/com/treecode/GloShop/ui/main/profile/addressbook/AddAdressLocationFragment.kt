@@ -57,6 +57,7 @@ private var editableAddressBook:AddressBook? = null
     private lateinit var sessionManager: SessionManager
 private  var  countrySelected:Country? = null
 private  var  citySelected:City? = null
+    var isFromProfile = true
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         arguments?.let {
@@ -89,26 +90,53 @@ private  var  citySelected:City? = null
                 // patch api
                 try {
                     val postCode = edit_address_post_code.text.toString().toInt()
+
+                    if (address.isNullOrEmpty()){
+                        Toasty.error(requireContext(),getString(R.string.invalid_address),Toasty.LENGTH_LONG).show()
+                        return@setOnClickListener
+                    }
+                    if (region.isNullOrEmpty()){
+                        Toasty.error(requireContext(),getString(R.string.invalid_region),Toasty.LENGTH_LONG).show()
+                        return@setOnClickListener
+                    }
+                    if (phoneNumber.toString().count() != 11 ){
+                        Toasty.error(requireContext(),getString(R.string.invalid_phone),Toasty.LENGTH_LONG).show()
+                        return@setOnClickListener
+                    }
+
                     if (!address.isNullOrEmpty() &&!region.isNullOrEmpty() && !phoneNumber.isNullOrEmpty() && phoneNumber.toString().count() == 11  && countrySelected != null){
                         updateAddress()
+
                     }else{
-                        Toasty.error(requireContext(),"Please Fill All Data",Toasty.LENGTH_LONG).show()
+                        Toasty.error(requireContext(),getString(R.string.filldata),Toasty.LENGTH_LONG).show()
                     }
                 }catch (e:Exception){
-                    Toasty.error(requireContext(),"Please enter valid Post code",Toasty.LENGTH_LONG).show()
+                    Toasty.error(requireContext(),getString(R.string.invalid_post_code),Toasty.LENGTH_LONG).show()
                     Toast.makeText(requireContext(), "", Toast.LENGTH_SHORT).show()
                 }
 
             }else {
                 try {
                     val postCode = edit_address_post_code.text.toString().toInt()
+                    if (address.isNullOrEmpty()){
+                        Toasty.error(requireContext(),getString(R.string.invalid_address),Toasty.LENGTH_LONG).show()
+                        return@setOnClickListener
+                    }
+                    if (region.isNullOrEmpty()){
+                        Toasty.error(requireContext(),getString(R.string.invalid_region),Toasty.LENGTH_LONG).show()
+                        return@setOnClickListener
+                    }
+                    if (phoneNumber.toString().count() != 11 ){
+                        Toasty.error(requireContext(),getString(R.string.invalid_phone),Toasty.LENGTH_LONG).show()
+                    return@setOnClickListener
+                    }
                     if (!address.isNullOrEmpty() &&!region.isNullOrEmpty() && !phoneNumber.isNullOrEmpty() && phoneNumber.toString().count() == 11 ){
                         sendAddressToServer()
                     }else{
-                        Toasty.error(requireContext(),"Please Fill All Data",Toasty.LENGTH_LONG).show()
+                        Toasty.error(requireContext(),getString(R.string.filldata),Toasty.LENGTH_LONG).show()
                     }
                 }catch (e:Exception){
-                    Toasty.error(requireContext(),"Please enter valid Post code",Toasty.LENGTH_LONG).show()
+                    Toasty.error(requireContext(),getString(R.string.invalid_post_code),Toasty.LENGTH_LONG).show()
                     Toast.makeText(requireContext(), "", Toast.LENGTH_SHORT).show()
                 }
 
@@ -359,7 +387,7 @@ val token = "Token "+ sessionManager.fetchAuthToken()!!
     }
 
     private fun dismissFragment() {
-        val myAdressBookFragment = MyAdressBookFragment.newInstance(true)
+        val myAdressBookFragment = MyAdressBookFragment.newInstance(isFromProfile)
         val fc: ActivityFragmentChangeListener? = activity as ActivityFragmentChangeListener?
         fc?.replaceFragment(myAdressBookFragment)
     }

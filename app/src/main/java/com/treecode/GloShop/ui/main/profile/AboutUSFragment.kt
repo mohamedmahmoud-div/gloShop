@@ -12,6 +12,8 @@ import com.treecode.GloShop.util.Constants
 import com.example.mvvmcoorutines.data.api.ApiService
 import es.dmoral.toasty.Toasty
 import kotlinx.android.synthetic.main.fragment_about_u_s.*
+import kotlinx.android.synthetic.main.fragment_about_u_s.progress_circular
+import kotlinx.android.synthetic.main.fragment_polices.*
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -27,6 +29,8 @@ private const val ARG_PARAM2 = "param2"
  * create an instance of this fragment.
  */
 class AboutUSFragment : Fragment() {
+    private var aboutUsCall: Call<PoiicesResonse>? = null
+
     // TODO: Rename and change types of parameters
     private var param1: String? = null
     private var param2: String? = null
@@ -45,15 +49,19 @@ class AboutUSFragment : Fragment() {
     }
 private fun getAboutUsData(){
     val apiInterface = RetrofitBuilder.getRetrofit().create(ApiService::class.java)
-    val aboutUsCall = apiInterface.getPolicesORAbout(Constants.URL_About)
-    aboutUsCall.enqueue(object :Callback<PoiicesResonse> {
-        override fun onFailure(call: Call<PoiicesResonse>, t: Throwable) {
+     aboutUsCall = apiInterface.getPolicesORAbout(Constants.URL_About)
+    progress_circular.visibility = View.VISIBLE
 
-            Toasty.error(requireContext(),"Check Internet Connection").show()
+    aboutUsCall!!.enqueue(object :Callback<PoiicesResonse> {
+        override fun onFailure(call: Call<PoiicesResonse>, t: Throwable) {
+            progress_circular.visibility = View.GONE
+            Toasty.error(requireContext(),getString(R.string.please_check_internet_connection)).show()
         }
 
         override fun onResponse(call: Call<PoiicesResonse>, response: Response<PoiicesResonse>) {
             val poiicesResonse = response.body()
+            progress_circular.visibility = View.GONE
+
             if (poiicesResonse != null){
                 val policesData = poiicesResonse.data
                 text_about_data.text = policesData.details
@@ -63,6 +71,12 @@ private fun getAboutUsData(){
     })
 
 }
+
+    override fun onPause() {
+        super.onPause()
+        if (aboutUsCall != null)
+            aboutUsCall!!.cancel()
+    }
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?

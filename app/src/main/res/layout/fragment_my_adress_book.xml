@@ -52,11 +52,13 @@
                 android:textSize="@dimen/title"
                 />-->
             <ImageView
-                android:layout_width="80dp"
+                android:layout_width="?attr/actionBarSize"
                 android:layout_height="?attr/actionBarSize"
+
                 app:layout_constraintStart_toStartOf="parent"
+
                 android:background="@drawable/iconbar"
-                app:layout_constraintTop_toTopOf="parent"/>
+                />
             <TextView
                 android:id="@+id/text_profile_bar_title"
                 android:layout_width="wrap_content"

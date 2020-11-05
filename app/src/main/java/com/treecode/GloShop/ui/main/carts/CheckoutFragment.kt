@@ -42,6 +42,7 @@ private const val ARG_PARAM2 = "param2"
  * create an instance of this fragment.
  */
 class CheckoutFragment : Fragment() {
+    private var testAvailbleProductsCall: Call<AvailableProductsResponse>? = null
     private  var productsInCart: HashSet<CartProduct>? = null
 
     // TODO: Rename and change types of parameters
@@ -144,7 +145,7 @@ private var addressID:Int? = null
         val sessionManager = SessionManager(requireContext())
         val token = sessionManager.fetchAuthToken()
         if (token.isNullOrEmpty()) {
-            Toasty.error(requireContext(), "Please Login And First", Toasty.LENGTH_LONG).show()
+            Toasty.error(requireContext(), getString(R.string.login_first), Toasty.LENGTH_LONG).show()
         }  else {
             val tokenToSend = "Token " + token!!
             val availablePaymentCall  = apiInterface.getAvailableGateWays(tokenToSend)
@@ -242,12 +243,15 @@ val  paymentGatewayAdapter = AvailablePaymentGatewayAdapter(gateways) {gatewayID
                 val productQuantity = adapter.convertCartProduct(it)
                 availableProductsQuantity.add(productQuantity)
             }
-            val testAvailbleProductsCall = apiInterface.testProductAvailability(
+             testAvailbleProductsCall = apiInterface.testProductAvailability(
                 AvailableProductsQuantityRequest(availableProductsQuantity),token)
             loading.visibility = View.VISIBLE
-            testAvailbleProductsCall.enqueue(object : Callback<AvailableProductsResponse> {
+            testAvailbleProductsCall!!.enqueue(object : Callback<AvailableProductsResponse> {
                 override fun onFailure(call: Call<AvailableProductsResponse>, t: Throwable) {
-
+                    val message = t.message
+                    if (message == "Canceled"){
+                        return
+                    }
                     Toasty.error(
                         requireContext(),
                         getString(R.string.please_check_internet_connection),
@@ -403,6 +407,11 @@ val  paymentGatewayAdapter = AvailablePaymentGatewayAdapter(gateways) {gatewayID
 
         }
     }
+    override fun onPause() {
+        super.onPause()
+        if (testAvailbleProductsCall!=null)
+            testAvailbleProductsCall!!.cancel()
+    }
 private fun setShippingCost(checkoutData:CheckoutData){
     val shippoingCost = checkoutData.shippingCost.toString()
     val totalCost = checkoutData.totalCost.toString()
@@ -422,10 +431,8 @@ private fun setShippingCost(checkoutData:CheckoutData){
     }
 
     private fun navigateToMyAddressBook(){
-        val fragment = MyAdressBookFragment()
-        val args = Bundle()
-        //args.putInt(Constants.BUNDLE_COLLECTION_ID, collectionId)
-        fragment.arguments = args
+        val fragment =  MyAdressBookFragment.newInstance(false)
+
         val fc: ActivityFragmentChangeListener? = activity as ActivityFragmentChangeListener?
         fc?.replaceFragment(fragment)
     }

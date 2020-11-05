@@ -34,6 +34,7 @@ import com.google.android.gms.auth.api.signin.GoogleSignInClient
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions
 import com.google.android.gms.common.api.ApiException
 import com.google.android.gms.tasks.Task
+import com.treecode.GloShop.util.UserAccountManger
 import es.dmoral.toasty.Toasty
 import kotlinx.android.synthetic.main.fragment_signup.*
 import org.json.JSONObject
@@ -343,6 +344,9 @@ private fun refillInputsDataFromCallBack(email:String,fullName:String){
     private fun showResponse(loginResponse: LoginResponse){
         val sessionManager = SessionManager(requireContext())
         loginResponse.data?.token?.let { sessionManager.saveAuthToken(it) }
+        val user = loginResponse.data!!
+        val userAccountManger = UserAccountManger(requireContext())
+        userAccountManger.saveUser(user)
 
         val intent = Intent(requireContext(), HomeActivity::class.java)
         startActivity(intent)

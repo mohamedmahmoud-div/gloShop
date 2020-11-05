@@ -8,6 +8,8 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.treecode.GloShop.R
 import com.treecode.GloShop.data.model.home.Product
+import com.treecode.GloShop.util.CartsManger
+import com.treecode.GloShop.util.MyWishManger
 import kotlinx.android.synthetic.main.item_product_layout.view.*
 
 class NewArrivalAdapter(
@@ -58,57 +60,88 @@ class NewArrivalAdapter(
 
             }
             Glide.with(itemView).load(prodcut.main_img).into(itemView.image_arrival_product);
+            val cartManger = CartsManger(itemView.context)
+
+            var allInCart = cartManger.getAllProducts()
+            if (!allInCart.isNullOrEmpty()) {
+                val items = allInCart.filter { it.id == prodcut.id }
+                if (!items.isNullOrEmpty()){
+                    itemView.button_arrival_cart.background = ContextCompat.getDrawable(itemView.context, R.drawable.ic_uncart)
+                    cartIsSelected = true
+
+                }else{
+                    itemView.button_arrival_cart.background = ContextCompat.getDrawable(itemView.context, R.drawable.ic_add_cart)
+                    cartIsSelected = false
+
+                }
+
+            }
+
+            val wishManger = MyWishManger(itemView.context)
+            var allInWish = wishManger.getWishList()
+            if (!allInWish.isNullOrEmpty()) {
+                val items = allInWish.filter { it.id == prodcut.id }
+                if (!items.isNullOrEmpty()){
+                    itemView.button_arrival_wishlist.background = ContextCompat.getDrawable(itemView.context, R.drawable.ic_unwish)
+                    wishIsSelected = true
+                }else{
+                    itemView.button_arrival_wishlist.background = ContextCompat.getDrawable(itemView.context, R.drawable.ic_wish)
+                    wishIsSelected = false
+
+                }
+
+            }
 
         }
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int)= DataViewHolder (
-            LayoutInflater.from(parent.context).inflate(R.layout.item_product_layout,parent,false)
+        LayoutInflater.from(parent.context).inflate(R.layout.item_product_layout,parent,false)
     )
 
 
     override fun getItemCount(): Int {
-return  newArrivals.count()
+        return  newArrivals.count()
     }
 
-        override fun onBindViewHolder(holder: DataViewHolder, position: Int) {
-            val product =  newArrivals[position]
-            holder.bind(product)
+    override fun onBindViewHolder(holder: DataViewHolder, position: Int) {
+        val product =  newArrivals[position]
+        holder.bind(product)
 
-            holder.itemView.setOnClickListener {
-                listener(product)
-            }
-            holder.itemView.button_arrival_cart.setOnClickListener{
-                if(!holder.cartIsSelected){
-                    holder.cartIsSelected = !holder.cartIsSelected
-                    holder.itemView.button_arrival_cart.background = ContextCompat.getDrawable(holder.itemView.context, R.drawable.ic_uncart)
-                    this. rollBack.onRecycleViewCartClicked(product,true)
+        holder.itemView.setOnClickListener {
+            listener(product)
+        }
+        holder.itemView.button_arrival_cart.setOnClickListener{
+            if(!holder.cartIsSelected){
+                holder.cartIsSelected = !holder.cartIsSelected
+                holder.itemView.button_arrival_cart.background = ContextCompat.getDrawable(holder.itemView.context, R.drawable.ic_uncart)
+                this. rollBack.onRecycleViewCartClicked(product,true)
 
-                } else {
-                    holder.cartIsSelected = !holder.cartIsSelected
-                    holder.itemView.button_arrival_cart.background = ContextCompat.getDrawable(holder.itemView.context, R.drawable.ic_add_cart)
-                    this. rollBack.onRecycleViewCartClicked(product,false)
+            } else {
+                holder.cartIsSelected = !holder.cartIsSelected
+                holder.itemView.button_arrival_cart.background = ContextCompat.getDrawable(holder.itemView.context, R.drawable.ic_add_cart)
+                this. rollBack.onRecycleViewCartClicked(product,false)
 
-
-                }
-
-                //TODO Add To SharedPreference
-            }
-            holder.itemView.button_arrival_wishlist.setOnClickListener{
-                if(!holder.wishIsSelected){
-                    holder.wishIsSelected = !holder.wishIsSelected
-                    holder.itemView.button_arrival_wishlist.background = ContextCompat.getDrawable(holder.itemView.context, R.drawable.ic_unwish)
-                    this.rollBack.onRecycleViewLWishClicked(product,true)
-
-                } else {
-                    holder.wishIsSelected = !holder.wishIsSelected
-                    holder.itemView.button_arrival_wishlist.background = ContextCompat.getDrawable(holder.itemView.context, R.drawable.ic_wish)
-                    this.rollBack.onRecycleViewLWishClicked(product,false)
-
-
-                }
 
             }
+
+            //TODO Add To SharedPreference
+        }
+        holder.itemView.button_arrival_wishlist.setOnClickListener{
+            if(!holder.wishIsSelected){
+                holder.wishIsSelected = !holder.wishIsSelected
+                holder.itemView.button_arrival_wishlist.background = ContextCompat.getDrawable(holder.itemView.context, R.drawable.ic_unwish)
+                this.rollBack.onRecycleViewLWishClicked(product,true)
+
+            } else {
+                holder.wishIsSelected = !holder.wishIsSelected
+                holder.itemView.button_arrival_wishlist.background = ContextCompat.getDrawable(holder.itemView.context, R.drawable.ic_wish)
+                this.rollBack.onRecycleViewLWishClicked(product,false)
+
+
+            }
+
+        }
 
     }
     fun setOnCallbackListener(recyclerViewCallback: RecyclerViewCallback) {

@@ -9,6 +9,8 @@ import com.bumptech.glide.Glide
 import com.treecode.GloShop.R
 import com.treecode.GloShop.data.model.home.Offer
 import com.treecode.GloShop.ui.adapter.RecyclerViewCallback
+import com.treecode.GloShop.util.CartsManger
+import com.treecode.GloShop.util.MyWishManger
 import kotlinx.android.synthetic.main.item_product_layout.view.*
 
 class ProductsOfferAdapter(
@@ -25,7 +27,7 @@ class ProductsOfferAdapter(
             itemView.line_offer_change.visibility = View.VISIBLE
             val productOffer = prodcut.offer
             if (productOffer!= null)
-            itemView.text_arrival_product_after_discount_price.text = productOffer.afterPrice.toString()
+                itemView.text_arrival_product_after_discount_price.text = productOffer.afterPrice.toString()
             if (prodcut.hasSpecs){
                 itemView.button_arrival_cart.visibility = View.GONE
             } else  {
@@ -40,7 +42,7 @@ class ProductsOfferAdapter(
                 itemView.layout_item_product_rate.visibility = View.VISIBLE
                 itemView.text_rate_percent.text = prodcut.stars
             }else {
-              itemView.layout_item_product_rate.visibility = View.GONE
+                itemView.layout_item_product_rate.visibility = View.GONE
             }
             itemView.text_product_offer.visibility = View.VISIBLE
             itemView.text_percentage.visibility = View.VISIBLE
@@ -59,6 +61,33 @@ class ProductsOfferAdapter(
 
             }
             Glide.with(itemView).load(prodcut.main_img).into(itemView.image_arrival_product);
+            val cartManger = CartsManger(itemView.context)
+            var allInCart = cartManger.getAllProducts()
+            if (!allInCart.isNullOrEmpty()) {
+                val items = allInCart.filter { it.id == prodcut.id }
+                if (!items.isNullOrEmpty()){
+                    itemView.button_arrival_cart.background = ContextCompat.getDrawable(itemView.context, R.drawable.ic_uncart)
+                    cartIsSelected = true
+                }else{
+                    itemView.button_arrival_cart.background = ContextCompat.getDrawable(itemView.context, R.drawable.ic_add_cart)
+                    cartIsSelected = false
+
+                }
+
+            }
+            val wishManger = MyWishManger(itemView.context)
+            var allInWish = wishManger.getWishList()
+            if (!allInWish.isNullOrEmpty()) {
+                val items = allInWish.filter { it.id == prodcut.id }
+                if (!items.isNullOrEmpty()){
+                    itemView.button_arrival_wishlist.background = ContextCompat.getDrawable(itemView.context, R.drawable.ic_unwish)
+                    wishIsSelected = true
+                }else{
+                    itemView.button_arrival_wishlist.background = ContextCompat.getDrawable(itemView.context, R.drawable.ic_wish)
+                    wishIsSelected = false
+                }
+
+            }
 
         }
     }
@@ -73,7 +102,7 @@ class ProductsOfferAdapter(
     }
 
     override fun onBindViewHolder(holder: DataViewHolder, position: Int) {
-val offer = productsOffer[position]
+        val offer = productsOffer[position]
         val product = offer.product
         holder.bind(offer)
         holder.itemView.setOnClickListener {
@@ -112,7 +141,7 @@ val offer = productsOffer[position]
         }
     }
     fun addNewItems(offers:ArrayList<Offer>){
-       // this.productsOffer.addAll(offers)
+        // this.productsOffer.addAll(offers)
         this.productsOffer = offers
     }
 

@@ -5,12 +5,14 @@ import android.app.SearchManager
 import android.content.Context
 import android.content.SharedPreferences
 import android.database.Cursor
+import android.os.Build
 import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
 import android.view.*
 import android.widget.AutoCompleteTextView
 import android.widget.Toast
+import androidx.annotation.RequiresApi
 import androidx.appcompat.widget.SearchView
 import androidx.core.os.bundleOf
 import androidx.fragment.app.Fragment
@@ -599,43 +601,62 @@ activity.naviagateToSearch()
         fc?.replaceFragment(fragment)
 
     }
-
-    override fun onRecycleViewCartClicked(product: Product,checked:Boolean) {
+    @RequiresApi(Build.VERSION_CODES.N)
+    override fun onRecycleViewCartClicked(product: Product, checked:Boolean) {
         val gson = Gson()
 
-      /*  val mPrefs: SharedPreferences =
-            requireContext().getSharedPreferences("test", Context.MODE_PRIVATE)
-        val prefsEditor: SharedPreferences.Editor = mPrefs.edit()
-        val json = mPrefs.getString(Constants.sharedKey_Add_Cart, "")
+        /*  val mPrefs: SharedPreferences =
+              requireContext().getSharedPreferences("test", Context.MODE_PRIVATE)
+          val prefsEditor: SharedPreferences.Editor = mPrefs.edit()
+          val json = mPrefs.getString(Constants.sharedKey_Add_Cart, "")
 
-        val type = object : TypeToken<Set<Product>>(){}.type*/
+          val type = object : TypeToken<Set<Product>>(){}.type*/
         //var productsInCart: HashSet<Product>? = gson.fromJson(json, type)
 
         val cartManger = CartsManger(requireContext())
         val productInCart = cartManger.adapterToProductInCart(product)
         var allInCart = cartManger.getAllProducts()
-        if (allInCart != null){
-            allInCart.forEach { productInCart ->
-                if (productInCart.id == product.id) {
-                    if (!checked) {
+        if (!allInCart.isNullOrEmpty()){
 
-                        allInCart!!.remove(productInCart)
-                        cartManger.updateCarts(allInCart!!)
-                        /*  val jsonToSave = gson.toJson(allInCart)
-                          prefsEditor.putString(Constants.sharedKey_Add_Cart, jsonToSave)
-                          prefsEditor.apply()*/
-                        return
-                    }
+            val items = allInCart.filter { it.id == product.id }
+            if (items.isNullOrEmpty()){
+                if (checked) {
+                    if (productInCart.quantity == 0)
+                        productInCart.quantity = 1
+
+                    allInCart.add(productInCart)
+
+
                 }
 
 
+            } else{
+                if (!checked) {
+                    allInCart.removeIf { it.id == product.id }}
             }
-            if (product.pieceCount ==0)
-                product.pieceCount = 1
-            if(!allInCart.contains(productInCart)){
-                allInCart.add(productInCart)
 
-            }
+//            allInCart.forEach { productInCart ->
+//                if (productInCart.id == product.id) {
+//                    if (!checked) {
+//
+//                        allInCart!!.remove(productInCart)
+//                        cartManger.updateCarts(allInCart!!)
+//                        /*  val jsonToSave = gson.toJson(allInCart)
+//                          prefsEditor.putString(Constants.sharedKey_Add_Cart, jsonToSave)
+//                          prefsEditor.apply()*/
+//                        return
+//                    }else {
+//                        if (product.pieceCount ==0)
+//                            product.pieceCount = 1
+//                        if(!allInCart!!.contains(productInCart)){
+//                            allInCart!!.add(productInCart)
+//
+//                        }
+//                    }
+//                }
+//
+//
+//            }
 
             //var cart:ArrayList<Products> = productsInCart
         }else{
@@ -644,52 +665,75 @@ activity.naviagateToSearch()
             allInCart.add(productInCart)
         }
         cartManger.updateCarts(allInCart!!)
-     /*   val jsonToSave = gson.toJson(allInCart)
-        prefsEditor.putString(Constants.sharedKey_Add_Cart,jsonToSave)
-        prefsEditor.apply()*/
+        /*   val jsonToSave = gson.toJson(allInCart)
+           prefsEditor.putString(Constants.sharedKey_Add_Cart,jsonToSave)
+           prefsEditor.apply()*/
     }
 
+    @RequiresApi(Build.VERSION_CODES.N)
     override fun onRecycleViewLWishClicked(proudct: Product, checked: Boolean) {
         val gson = Gson()
         val wishManger = MyWishManger(requireContext())
-val productWish = wishManger.adapterToProductInCart(proudct)
+        val productWish = wishManger.adapterToProductInCart(proudct)
         val mPrefs: SharedPreferences =
             requireContext().getSharedPreferences("test", Context.MODE_PRIVATE)
         val prefsEditor: SharedPreferences.Editor = mPrefs.edit()
         val json = mPrefs.getString(Constants.sharedKey_Add_Wish, "")
 
         val type = object : TypeToken<Set<CartProduct>>(){}.type
-        var productsInCart = wishManger.getWishList()
+        var productsInWish = wishManger.getWishList()
 
-        if (productsInCart != null){
-            productsInCart.forEach { productInCart ->
-                if (productInCart.id == proudct.id){
-                    if (!checked){
+        if (!productsInWish.isNullOrEmpty()){
 
-                        productsInCart!!.remove(productInCart)
-                    wishManger.updateCarts(productsInCart!!)
-                   return
-                    }
+
+            val items = productsInWish.filter { it.id == proudct.id }
+            if (items.isNullOrEmpty()){
+                if (checked) {
+
+
+                    productsInWish.add(productWish)
+
+
                 }
 
 
+            } else{
+                if (!checked) {
+                    productsInWish.removeIf { it.id == proudct.id }}
             }
-            if (proudct.pieceCount ==0)
-                proudct.pieceCount = 1
-            if(!productsInCart.contains(productWish)){
-                productsInCart.add(productWish)
 
-            }
+
+
+//            productsInWish.forEach { productInCart ->
+//                if (productInCart.id == proudct.id){
+//                    if (!checked){
+//
+//                        productsInWish!!.remove(productInCart)
+//                    wishManger.updateCarts(productsInWish!!)
+//                   return
+//                    }else{
+//                        if (proudct.pieceCount ==0)
+//                            proudct.pieceCount = 1
+//                   val items =  productsInWish!!.filter { it.id == proudct.id }
+//                        if (items.isNullOrEmpty()){
+//                            productsInWish!!.add(productWish)
+//
+//                        }
+//
+//                    }
+//                }
+//            }
+
 
 
             //var cart:ArrayList<Products> = productsInCart
         }else{
             proudct.pieceCount = 1
 
-            productsInCart = HashSet<CartProduct>()
-            productsInCart.add(productWish)
+            productsInWish = HashSet<CartProduct>()
+            productsInWish.add(productWish)
         }
-        wishManger.updateCarts(productsInCart!!)
+        wishManger.updateCarts(productsInWish!!)
 
     }
     private fun getCarts(): ArrayList<Int>{

@@ -2,11 +2,13 @@ package com.treecode.GloShop.ui.main.carts
 
 import android.content.Context
 import android.content.SharedPreferences
+import android.os.Build
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
+import androidx.annotation.RequiresApi
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProviders
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -32,6 +34,7 @@ import retrofit2.Response
 
 class CartsFragment : Fragment() , CartItemChanged {
 
+    private  var testAvailbleProductsCall: Call<AvailableProductsResponse>? = null
     private lateinit var cartsViewModel: CartsViewModel
     private lateinit var cartAdapter : MyCartAdapter
     private var products = HashSet<CartProduct>()
@@ -71,15 +74,18 @@ class CartsFragment : Fragment() , CartItemChanged {
                 }
             val sessionManager = SessionManager(requireContext())
             val token = sessionManager.fetchAuthToken()
-            if (token != null) {
+            if (!token.isNullOrEmpty()) {
                 val tokenToSent = "Token $token"
-                val testAvailbleProductsCall = apiInterface.testProductAvailability(
+                 testAvailbleProductsCall = apiInterface.testProductAvailability(
                     AvailableProductsQuantityRequest(availableProductsQuantity),tokenToSent
                 )
                 check_cart_loading.visibility  = View.VISIBLE
-                testAvailbleProductsCall.enqueue(object : Callback<AvailableProductsResponse> {
+                testAvailbleProductsCall!!.enqueue(object : Callback<AvailableProductsResponse> {
                     override fun onFailure(call: Call<AvailableProductsResponse>, t: Throwable) {
-
+                    val message = t.message
+                        if (message == "Canceled"){
+                            return
+                        }
                         Toasty.error(
                             requireContext(),
                             getString(R.string.please_check_internet_connection),
@@ -106,11 +112,23 @@ class CartsFragment : Fragment() , CartItemChanged {
 
                                compareProductsWithStoreAvailability(prdocuts)
                             }
+                        }else {
+                            Toasty.warning(
+                                requireContext(),
+                                getString(R.string.please_check_login),
+                                Toasty.LENGTH_LONG
+                            ).show()
                         }
 
                     }
 
                 })
+            }else{
+                Toasty.warning(
+                    requireContext(),
+                    getString(R.string.please_check_login),
+                    Toasty.LENGTH_LONG
+                ).show()
             }
         }
 
@@ -167,6 +185,7 @@ class CartsFragment : Fragment() , CartItemChanged {
 
     override fun onStop() {
         super.onStop()
+
        // products.clear()
     }
     private fun navigateToCheckoutFragment(){
@@ -223,12 +242,12 @@ val productsInCart = cartManger.getAllProducts()
         }
     }
 
+    @RequiresApi(Build.VERSION_CODES.N)
     override fun onItemDelete(product: CartProduct) {
-        if(updatedProducts.contains(product)){
-            updatedProducts.remove(product)
+            updatedProducts.removeIf { it.id == product.id }
             if (updatedProducts.size == 0)
                 showNoItemsInCart()
-        }
+
         updateCart(updatedProducts)
     }
 
@@ -248,6 +267,8 @@ val productsInCart = cartManger.getAllProducts()
 
     override fun onPause() {
         super.onPause()
+        if (testAvailbleProductsCall!=null)
+        testAvailbleProductsCall!!.cancel()
         updateCart(updatedProducts)
     }
     fun showNoItemsInCart(){

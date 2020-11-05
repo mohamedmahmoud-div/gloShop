@@ -8,11 +8,14 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.treecode.GloShop.R
 import com.treecode.GloShop.data.model.home.Product
+import com.treecode.GloShop.util.CartsManger
+import com.treecode.GloShop.util.MyWishManger
 import kotlinx.android.synthetic.main.item_product_search.view.*
+
 
 class ProductSearchAdapter  (private var products:ArrayList<Product>,private val rollBack:RecyclerViewCallback, private val listener: (Product) -> Unit):
     RecyclerView.Adapter<ProductSearchAdapter.DataViewHolder>(){
-       private  var productFilterList = ArrayList<Product>()
+    private  var productFilterList = ArrayList<Product>()
 
     init {
         productFilterList = products
@@ -34,8 +37,8 @@ class ProductSearchAdapter  (private var products:ArrayList<Product>,private val
                 itemView.text_search_product_after_discount_price.visibility = View.VISIBLE
                 itemView.line_offer_change_search.visibility = View.VISIBLE
                 itemView.text_search_product_after_discount_price.text = offer.afterPrice.toString()
-             //   itemView.text_product_offer.visibility = View.VISIBLE
-               // itemView.text_product_offer.text = offer.discount.toString()
+                //   itemView.text_product_offer.visibility = View.VISIBLE
+                // itemView.text_product_offer.text = offer.discount.toString()
             }
             itemView.text_product_count_search.text = "${prodcut.pieceCount}"
             if (!prodcut.hasSpecs){
@@ -70,14 +73,46 @@ class ProductSearchAdapter  (private var products:ArrayList<Product>,private val
                 itemView.btn_cart_search.visibility = View.GONE
 
             }
+
+            val cartManger = CartsManger(itemView.context)
+            var allInCart = cartManger.getAllProducts()
+            if (!allInCart.isNullOrEmpty()) {
+                val items = allInCart.filter { it.id == prodcut.id }
+                if (!items.isNullOrEmpty()){
+                    itemView.btn_cart_search.background = ContextCompat.getDrawable(itemView.context, R.drawable.ic_uncart)
+                    cartIsSelected = true
+
+                }else{
+                    itemView.btn_cart_search.background = ContextCompat.getDrawable(itemView.context, R.drawable.ic_add_cart)
+                    cartIsSelected = false
+
+                }
+
+            }
+
+            val wishManger = MyWishManger(itemView.context)
+            var allInWish = wishManger.getWishList()
+            if (!allInWish.isNullOrEmpty()) {
+                val items = allInWish.filter { it.id == prodcut.id }
+                if (!items.isNullOrEmpty()){
+                    itemView.btn_add_wish_search.background = ContextCompat.getDrawable(itemView.context, R.drawable.ic_unwish)
+                    wishIsSelected = true
+
+                }else{
+                    itemView.btn_add_wish_search.background = ContextCompat.getDrawable(itemView.context, R.drawable.ic_wish)
+                    wishIsSelected = false
+                }
+
+            }
+
         }
 
     }
 
-fun addItems(productsList:ArrayList<Product>){
-    productFilterList.addAll(productsList)
+    fun addItems(productsList:ArrayList<Product>){
+        productFilterList.addAll(productsList)
 
-}
+    }
     fun replaceItems(productsList: ArrayList<Product>){
         productFilterList = productsList
         products = productsList
@@ -93,7 +128,7 @@ fun addItems(productsList:ArrayList<Product>){
         )
 
     override fun getItemCount(): Int {
-       return productFilterList.count()
+        return productFilterList.count()
     }
 
     override fun onBindViewHolder(holder: DataViewHolder, position: Int) {
@@ -124,20 +159,20 @@ fun addItems(productsList:ArrayList<Product>){
 
             }
         }
-holder.itemView.btn_cart_search.setOnClickListener{
-    if(!holder.cartIsSelected){
-        holder.cartIsSelected = !holder.cartIsSelected
-        holder.itemView.btn_cart_search.background = ContextCompat.getDrawable(holder.itemView.context, R.drawable.ic_uncart)
-        this. rollBack.onRecycleViewCartClicked(product,true)
+        holder.itemView.btn_cart_search.setOnClickListener{
+            if(!holder.cartIsSelected){
+                holder.cartIsSelected = !holder.cartIsSelected
+                holder.itemView.btn_cart_search.background = ContextCompat.getDrawable(holder.itemView.context, R.drawable.ic_uncart)
+                this. rollBack.onRecycleViewCartClicked(product,true)
 
-    } else {
-        holder.cartIsSelected = !holder.cartIsSelected
-        holder.itemView.btn_cart_search.background = ContextCompat.getDrawable(holder.itemView.context, R.drawable.ic_add_cart)
-        this. rollBack.onRecycleViewCartClicked(product,false)
+            } else {
+                holder.cartIsSelected = !holder.cartIsSelected
+                holder.itemView.btn_cart_search.background = ContextCompat.getDrawable(holder.itemView.context, R.drawable.ic_add_cart)
+                this. rollBack.onRecycleViewCartClicked(product,false)
 
-    }
+            }
 
-}
+        }
         holder.itemView.btn_add_wish_search.setOnClickListener{
             if (!holder.wishIsSelected){
                 holder.wishIsSelected = !holder.wishIsSelected

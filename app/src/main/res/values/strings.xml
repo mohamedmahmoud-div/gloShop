@@ -117,6 +117,7 @@
     <string name="facebook_app_id" translatable="false">808175049935867</string>
     <string name="fb_login_protocol_scheme" translatable="false">fb808175049935867</string>
     <string name="please_check_internet_connection">Please Check Internet Connection</string>
+    <string name="please_check_login">Please Login First</string>
     <string name="complete_sign_up">Complete Sign Up</string>
     <string name="sign_up">Sign Up</string>
     <string name="signup_with_facebook">SignUp With FaceBook</string>
@@ -160,6 +161,13 @@
     <string name="apply_promo_code">Apply promo code</string>
     <string name="insert_promo_code">please insert promo code</string>
     <string name="discount">Discount</string>
+    <string name="filldata">Please Fill All Data</string>
+    <string name="invalid_post_code">Please enter valid Post code</string>
+    <string name="login_first">Please Login And First</string>
+    <string name="invalid_address">Please enter valid address</string>
+    <string name="invalid_phone">Please enter valid Mobile phone</string>
+    <string name="invalid_region">Please enter valid Region</string>
+    <string name="username_or_email">username or Email</string>
 
     <string-array name="Countries">
         <item>Java</item>
