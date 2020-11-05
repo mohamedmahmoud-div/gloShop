@@ -79,7 +79,7 @@ private var listOFAddresBook = HashSet<AddressBook>()
         }
         addressAdapter = AddressBookAdapter(listOFAddresBook,{
             val pendingShipmentFragment = AddAdressLocationFragment.newInstance(it.id,it.phone,it.streetAddress,it.region)
-
+                pendingShipmentFragment.isFromProfile = isFromProfileNavigation
             val fc: ActivityFragmentChangeListener? = activity as ActivityFragmentChangeListener?
             fc?.replaceFragment(pendingShipmentFragment)
         },{ address, postion ->
