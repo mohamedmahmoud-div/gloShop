@@ -1,7 +1,9 @@
 package com.treecode.GloShop.ui.main
 
 import android.content.Intent
+import android.content.res.Configuration
 import android.os.Bundle
+import android.view.ContextThemeWrapper
 import android.view.MenuItem
 import androidx.appcompat.app.AppCompatActivity
 import com.treecode.GloShop.R
@@ -12,6 +14,7 @@ import com.treecode.GloShop.ui.main.home.ui.main.HomeActivity
 import com.treecode.GloShop.ui.main.profile.base.ProfileActivty
 import com.treecode.GloShop.ui.main.search.SearchActivity
 import com.google.android.material.bottomnavigation.BottomNavigationView
+import java.util.*
 
 
 abstract class BaseActivity  : AppCompatActivity(), BottomNavigationView.OnNavigationItemSelectedListener {
@@ -19,7 +22,23 @@ companion object{
     var  home :Home? = null
     var homeSearchResponse:SearchResponse? = null
     var searchTapSearchResponse:SearchResponse? = null
+    var dLocale: Locale? = Locale.getDefault()
+
 }
+
+    init {
+        updateConfig(this)
+    }
+
+    fun updateConfig(wrapper: ContextThemeWrapper) {
+        if(dLocale== Locale("") ) // Do nothing if dLocale is null
+            return
+
+        Locale.setDefault(dLocale)
+        val configuration = Configuration()
+        configuration.setLocale(dLocale)
+        wrapper.applyOverrideConfiguration(configuration)
+    }
     override fun onNavigationItemSelected(item: MenuItem): Boolean {
         navigationView!!.postDelayed({
             val itemId = item.itemId

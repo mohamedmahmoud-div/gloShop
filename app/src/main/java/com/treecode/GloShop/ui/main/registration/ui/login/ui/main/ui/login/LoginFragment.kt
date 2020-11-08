@@ -156,7 +156,7 @@ class LoginFragment : Fragment() {
 
                         showResponse(loginResponse)
                     } else if (text != null ){
-                        Toasty.error(requireContext(), "$text page", Toast.LENGTH_LONG, true).show();
+                        Toasty.error(requireContext(), "$text", Toast.LENGTH_LONG, true).show();
                     }
 
                 }
@@ -166,7 +166,7 @@ class LoginFragment : Fragment() {
                     t: Throwable
                 ) {
                     loadingProgressBar.visibility = View.GONE
-
+                    Toasty.error(requireContext(),getString(R.string.please_check_internet_connection),Toasty.LENGTH_LONG).show()
                     call.cancel()
 
                 }

@@ -168,6 +168,11 @@
     <string name="invalid_phone">Please enter valid Mobile phone</string>
     <string name="invalid_region">Please enter valid Region</string>
     <string name="username_or_email">username or Email</string>
+    <string name="change_language">Change Language</string>
+    <string name="arabic">Arabic</string>
+    <string name="english">English</string>
+
+    <string name="apply">Apply</string>
 
     <string-array name="Countries">
         <item>Java</item>

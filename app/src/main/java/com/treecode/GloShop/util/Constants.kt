@@ -17,7 +17,7 @@ class Constants {
         val DEFAULt_ADDRESS = "user_address"
         val USER__ACCOUNT = "user_account"
         val URL_POLICES = "PrivacyPolicy"
-        val URL_About = "TermsOfUse"
+        val URL_About = "AboutUs"
          val ORDERED = 1
         val  PREPARING = 2
         val  READY = 3

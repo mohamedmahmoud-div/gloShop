@@ -122,6 +122,12 @@ class MainProfileFragment : Fragment() {
             val fc: ActivityFragmentChangeListener? = activity as ActivityFragmentChangeListener?
             fc?.replaceFragment(contactUSFragment)
         }
+        layout_change_language.setOnClickListener {
+            val changeFragment = ChangeLanguageFragment()
+            val fc: ActivityFragmentChangeListener? = activity as ActivityFragmentChangeListener?
+            fc?.replaceFragment(changeFragment)
+        }
+
     }
     private fun setupGoogle(){
         val gso = GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)

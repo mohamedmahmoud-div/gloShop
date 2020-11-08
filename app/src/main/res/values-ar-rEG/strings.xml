@@ -153,6 +153,9 @@
     <string name="invalid_address">من فضلك ادحل ادخل العنوان</string>
     <string name="invalid_phone">من فضلك ادخل رقم الهاتف صحيح</string>
     <string name="invalid_region">من فضلك ادحل المنطفة</string>
-    <string name="username_or_email">username or Email</string>
-
+    <string name="username_or_email">اسم المستخدم او البريد الاكتروني</string>
+    <string name="change_language">تغير اللفة</string>
+    <string name="english">الانجليزية</string>
+    <string name="arabic">العربية</string>
+    <string name="apply">تأكيد</string>
 </resources>
