@@ -18,7 +18,7 @@ class CateogiesAdapter(
         fun  bind(category: Cateogry){
             itemView.text_collection.text = category.name
             //
-            Glide.with(itemView).load(category.image).centerCrop().into(itemView.imageView_collection)
+            Glide.with(itemView).load(category.image).fitCenter().centerCrop().into(itemView.imageView_collection)
             //Glide.with(itemView).load(category.image).into(itemView.imageView_collection)
 
         }

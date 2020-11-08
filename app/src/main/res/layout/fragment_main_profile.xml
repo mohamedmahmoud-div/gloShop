@@ -294,7 +294,7 @@
             <ImageView
                 android:layout_width="@dimen/size_24"
                 android:layout_height="@dimen/size_24"
-                android:background="@drawable/ic_contactus"/>
+                android:background="@drawable/ic_language"/>
             <TextView
                 android:id="@+id/text_change_language"
                 android:layout_width="match_parent"
