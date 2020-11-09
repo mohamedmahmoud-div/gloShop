@@ -54,9 +54,19 @@ class ChangeLanguageFragment : Fragment() {
       currentLanguage =   Locale.getDefault().getDisplayLanguage();
         layout_english.setOnClickListener {
             languageChange = "en"
+            text_arabic.setBackgroundColor((resources.getColor(R.color.my_transparent)))
+            text_english.setBackgroundColor((resources.getColor(R.color.colorPrimary)))
+            text_english.setTextColor(resources.getColor(R.color.white))
+            text_arabic.setTextColor(resources.getColor(R.color.black))
+
         }
         layout_arabic.setOnClickListener {
-        languageChange =  "ar"
+            languageChange =  "ar"
+            text_arabic.setBackgroundColor((resources.getColor(R.color.colorPrimary)))
+            text_arabic.setTextColor(resources.getColor(R.color.white))
+            text_english.setBackgroundColor((resources.getColor(R.color.my_transparent)))
+            text_english.setTextColor(resources.getColor(R.color.black))
+
         }
         btn_apply_language.setOnClickListener {
             setLocale(languageChange)
@@ -91,6 +101,7 @@ class ChangeLanguageFragment : Fragment() {
             val fc: ActivityFragmentChangeListener? = activity as ActivityFragmentChangeListener?
         val inent = Intent(requireContext(), LaunchActivity::class.java)
         activity?.startActivity(inent)
+        activity?.finish()
            // fc?.replaceFragment(mainProfileFragment)
 
     }

@@ -95,7 +95,7 @@
             android:background="@drawable/ic_english_language"/>
         <TextView
             android:id="@+id/text_english"
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/english"
             android:fontFamily="@font/poppins_bold"
@@ -121,7 +121,7 @@
 
         <TextView
             android:id="@+id/text_arabic"
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/activity_vertical_margin"
             android:background="@color/my_transparent"
