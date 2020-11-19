@@ -21,6 +21,9 @@ class NewArrivalAdapter(
         var cartIsSelected = false
         var wishIsSelected = false
         fun bind(prodcut: Product) {
+
+            itemView.text_arrival_product_price.text = prodcut.price.toString()
+
             if (!prodcut.hasSpecs){
                 itemView.button_arrival_cart.visibility = View.VISIBLE
             } else  {
@@ -34,11 +37,23 @@ class NewArrivalAdapter(
                 itemView.text_rate_percent.text = prodcut.stars!!
 
             if (offer!= null){
-                itemView.text_arrival_product_after_discount_price.visibility = View.VISIBLE
-                itemView.line_offer_change.visibility = View.VISIBLE
-                itemView.text_arrival_product_after_discount_price.text = offer.afterPrice.toString()
-                itemView.text_product_offer.visibility = View.VISIBLE
-                itemView.text_product_offer.text = offer.discount.toString()
+                if (offer.afterPrice != prodcut.price){
+                    itemView.text_arrival_product_after_discount_price.visibility = View.VISIBLE
+                    itemView.line_offer_change.visibility = View.VISIBLE
+                    itemView.text_arrival_product_after_discount_price.text = offer.afterPrice.toString()
+                    itemView.text_product_offer.visibility = View.VISIBLE
+
+                    if (offer.discount != null)
+                        itemView.text_product_offer.text = offer.discount.toString()
+                }else {
+                    itemView.text_arrival_product_after_discount_price.visibility = View.VISIBLE
+                    itemView.text_arrival_product_after_discount_price.text = offer.type
+                    itemView.text_arrival_product_price.text = prodcut.price.toString()
+                }
+            }else {
+                itemView.line_offer_change.visibility = View.GONE
+                itemView.text_arrival_product_after_discount_price.visibility = View.GONE
+
             }
 
             itemView.text_arrival_product_name.text = prodcut.name
@@ -156,6 +171,7 @@ class NewArrivalAdapter(
         newArrivals = arrivalsList
     }
 }
+
 
 interface RecyclerViewCallback {
     fun onRecycleViewCartClicked(product: Product, checked:Boolean)

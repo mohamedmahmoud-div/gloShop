@@ -45,7 +45,7 @@ class MyWishManger (context: Context){
         val spec = product.specification
         var productSpecs = ArrayList<Specification>()
         spec.let { it?.let { it1 -> productSpecs.add(it1) } }
-        val price = product.price.toInt()
+        val price = product.price
         val discount  = product.discount
         val img = product.main_img
         val stars = product.stars

@@ -35,4 +35,5 @@
     <dimen name="padding_10">10dp</dimen>
     <dimen name="small_text">10sp</dimen>
     <dimen name="ic_width">22dp</dimen>
+    <dimen name="image_size_150">150dp</dimen>
 </resources>

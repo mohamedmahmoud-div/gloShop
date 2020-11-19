@@ -27,7 +27,12 @@ class ProductsOfferAdapter(
             itemView.line_offer_change.visibility = View.VISIBLE
             val productOffer = prodcut.offer
             if (productOffer!= null)
-                itemView.text_arrival_product_after_discount_price.text = productOffer.afterPrice.toString()
+                if (productOffer.afterPrice != prodcut.price){
+                    itemView.text_arrival_product_after_discount_price.text = productOffer.afterPrice.toString()
+                }else {
+                    itemView.text_arrival_product_after_discount_price.text = productOffer.type
+                }
+
             if (prodcut.hasSpecs){
                 itemView.button_arrival_cart.visibility = View.GONE
             } else  {

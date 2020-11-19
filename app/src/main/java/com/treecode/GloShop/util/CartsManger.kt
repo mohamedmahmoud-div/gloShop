@@ -112,7 +112,7 @@ fun getAllProducts():HashSet<CartProduct>?{
         val spec = product.specification
         var productSpecs = ArrayList<Specification>()
         spec.let { it?.let { it1 -> productSpecs.add(it1) } }
-        val price = product.price.toInt()
+        val price = product.price
          val afterPrice = product.offer?.afterPrice
 
         val discount  = product.discount

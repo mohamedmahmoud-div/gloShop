@@ -5,10 +5,10 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:background="@color/shadow"
     android:orientation="vertical"
-android:layout_margin="@dimen/small_margin"
+
     >
     <androidx.cardview.widget.CardView
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="match_parent"
         app:cardCornerRadius="10dp"
         app:cardElevation="30dp"
@@ -23,12 +23,15 @@ android:layout_margin="@dimen/small_margin"
             android:orientation="horizontal">
 
             <ImageView
+                android:adjustViewBounds="true"
                 android:id="@+id/imageView_collection"
-                android:layout_width="match_parent"
-                android:layout_height="@dimen/image_size_100"
+                android:layout_width="@dimen/image_size_150"
+                android:layout_height="@dimen/image_size_120"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
+                android:background="@color/white"
                 />
+
             <TextView
                 android:id="@+id/text_collection"
                 android:layout_width="0dp"
@@ -36,6 +39,7 @@ android:layout_margin="@dimen/small_margin"
                 android:fontFamily="@font/poppins_light"
                 android:textColor="@color/black"
                 android:textSize="@dimen/subtitle"
+                android:textAlignment="center"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/imageView_collection"
                 app:layout_constraintEnd_toEndOf="parent"

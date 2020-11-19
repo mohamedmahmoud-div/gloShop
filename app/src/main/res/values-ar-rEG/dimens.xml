@@ -11,4 +11,5 @@
     <dimen name="font_sub_title">18sp</dimen>
     <dimen name="size_body">16sp</dimen>
     <dimen name="large_text">30sp</dimen>
+    <dimen name="image_size_150">150dp</dimen>
 </resources>

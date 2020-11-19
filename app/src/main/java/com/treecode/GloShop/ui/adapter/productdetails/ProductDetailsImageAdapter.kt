@@ -8,28 +8,33 @@ import com.bumptech.glide.Glide
 import com.treecode.GloShop.R
 import kotlinx.android.synthetic.main.item_product_details_image.view.*
 
-class ProductDetailsImageAdapter (private val productListOfImages:ArrayList<String>) : RecyclerView.Adapter<ProductDetailsImageAdapter.DataViewHolder>() {
+class ProductDetailsImageAdapter (private val productListOfImages:ArrayList<String>,val imageListener:ProductImageClickListener) : RecyclerView.Adapter<ProductDetailsImageAdapter.DataViewHolder>() {
     class DataViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         fun bind(image: String) {
             //
-            Glide.with(itemView).load(image).into(itemView.image_product_details);
+
+            Glide.with(itemView).load(image).centerCrop().into(itemView.image_product_details);
 
         }
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int):  DataViewHolder =
-    ProductDetailsImageAdapter.DataViewHolder(
-    LayoutInflater.from(parent.context).inflate(R.layout.item_product_details_image, parent, false)
+        ProductDetailsImageAdapter.DataViewHolder(
+            LayoutInflater.from(parent.context).inflate(R.layout.item_product_details_image, parent, false)
 
-    )
+        )
 
 
     override fun getItemCount(): Int {
-return  productListOfImages.count()
+        return  productListOfImages.count()
     }
 
     override fun onBindViewHolder(holder: DataViewHolder, position: Int) {
-holder.bind(productListOfImages[position])
+        holder.bind(productListOfImages[position])
+
+        holder.itemView.image_product_details.setOnClickListener {
+            imageListener.onImageSelected(productListOfImages[position])
+        }
     }
     fun addImages(images:ArrayList<String>){
         productListOfImages.addAll(images)
@@ -38,4 +43,7 @@ holder.bind(productListOfImages[position])
         productListOfImages.add(image)
     }
 
+}
+interface  ProductImageClickListener{
+    fun onImageSelected(path:String)
 }

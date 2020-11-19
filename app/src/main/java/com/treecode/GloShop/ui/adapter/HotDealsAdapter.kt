@@ -19,8 +19,10 @@ class HotDealsAdapter(
             itemView.text_category_name.text = hotDeal.dealName
             itemView.text_offer_description.text = hotDeal.offer.description
             itemView.text_offer_type.text = hotDeal.offer.type.name
+            if (hotDeal.offer.discount == 0)
+                itemView.btn_hot_deal_offer.visibility = View.GONE
             itemView.btn_hot_deal_offer.text = hotDeal.offer.discount.toString() + "%"
-         Glide.with(itemView).load(hotDeal.offer.image).into(itemView.imageView_deal);
+            Glide.with(itemView).load(hotDeal.offer.image).fitCenter().into(itemView.imageView_deal);
 
         }
     }

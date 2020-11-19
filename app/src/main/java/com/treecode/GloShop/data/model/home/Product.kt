@@ -42,7 +42,7 @@ For support, please feel free to contact me at https://www.linkedin.com/in/syeda
 class OptionalOffer(
 	@SerializedName("type") val type:String,
 	@SerializedName("dicount") val discount: Double?,
-	@SerializedName("after_price") val afterPrice:Int
+	@SerializedName("after_price") val afterPrice:Double
 
 
 )
@@ -59,10 +59,10 @@ class  CartProduct(
 	var quantity:Int = 1,
 	 val name: String,
 	val categoryName:String,
-	val price:Int,
-	val totalPirce:Int,
+	val price:Double,
+	val totalPirce:Double,
 	var selectedIDS :ArrayList<SelectedSpec>?,
 	var totalAvailbilty:Int?,
 	val main_img: String,
-	val afterPrice: Int?
+	val afterPrice: Double?
 )

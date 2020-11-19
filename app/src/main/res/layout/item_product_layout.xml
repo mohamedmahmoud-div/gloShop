@@ -62,7 +62,7 @@
                     android:layout_marginEnd="@dimen/activity_horizontal_margin"
                     android:background="@drawable/ic_wish"
                     android:textSize="@dimen/cellText"
-                    android:backgroundTint="@color/red"
+                    android:backgroundTint="@color/red_rate"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
             </androidx.constraintlayout.widget.ConstraintLayout>

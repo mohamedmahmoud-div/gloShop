@@ -41,12 +41,14 @@ import kotlinx.android.synthetic.main.bottom_sheet_filter.*
 import kotlinx.android.synthetic.main.fragment_search.*
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
+import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 
 
 class SearchFragment : Fragment() , RecyclerViewCallback {
 
+    private var call3: Call<SearchResponse>? = null
     private  var suggestions: List<String>? = null
     private  var appliedFilters = HashSet<SpecValue> ()
     private lateinit var searchViewModel: SearchViewModel
@@ -76,13 +78,13 @@ class SearchFragment : Fragment() , RecyclerViewCallback {
     }
 
     override fun onCreateView(
-            inflater: LayoutInflater,
-            container: ViewGroup?,
-            savedInstanceState: Bundle?
+        inflater: LayoutInflater,
+        container: ViewGroup?,
+        savedInstanceState: Bundle?
     ): View? {
 
         val root = inflater.inflate(R.layout.fragment_search, container, false)
-       // val textView: TextView = root.findViewById(R.id.text_search)
+        // val textView: TextView = root.findViewById(R.id.text_search)
 
 
 //
@@ -98,7 +100,9 @@ class SearchFragment : Fragment() , RecyclerViewCallback {
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
         setHasOptionsMenu(true)
-
+//        islastPage= false
+//        pageNumber = 1
+//        itemsCount = 0
         apiInterface = RetrofitBuilder.getRetrofit().create(ApiService::class.java)
 
         val args = arguments
@@ -106,22 +110,43 @@ class SearchFragment : Fragment() , RecyclerViewCallback {
         if (args != null) {
             //Todo this from Home Navigation tap we need to fix requesting
             islastPage = false
-             colection = args!!.getInt(Constants.BUNDLE_COLLECTION_ID)
-             topDeal = args!!.getInt(Constants.BUNDLE_TOPDEAL_ID)
-             searchText = args!!.getString(Constants.BUNDLE_SearchText)
+            colection = args!!.getInt(Constants.BUNDLE_COLLECTION_ID)
+            topDeal = args!!.getInt(Constants.BUNDLE_TOPDEAL_ID)
+            searchText = args!!.getString(Constants.BUNDLE_SearchText)
             collection_id = colection
             activityHostID = Constants.Activity_Host_Home
-          if(BaseActivity.homeSearchResponse != null)  {
-         /*     retrieveList(BaseActivity.homeSearchResponse!!,activityHostID)
-              shimmerFrameLayout.visibility = View.GONE
-              shimmerFrameLayout.stopShimmerAnimation()
-              recyclerview_search_product.visibility = View.VISIBLE*/
-              callNetwork(searchText,collection_id,topDeal)
+            if(BaseActivity.homeSearchResponse != null)  {
+                /*     retrieveList(BaseActivity.homeSearchResponse!!,activityHostID)
+                     shimmerFrameLayout.visibility = View.GONE
+                     shimmerFrameLayout.stopShimmerAnimation()
+                     recyclerview_search_product.visibility = View.VISIBLE*/
+                if (productListSearView.isNullOrEmpty())
+                    callNetwork(searchText,collection_id,topDeal)
+                else{
+                    shimmerFrameLayout.visibility = View.GONE
+                    shimmerFrameLayout.stopShimmerAnimation()
+                    recyclerview_search_product.visibility = View.VISIBLE
+                    searchAdapter.replaceItems(productListSearView)
+                    searchAdapter.notifyDataSetChanged()
+                    text_items_count.visibility = View.VISIBLE
+                    text_items_count.text = productListSearView.size.toString()
+                    text_header_product_count.visibility = View.VISIBLE
 
-          }else {
-              callNetwork(searchText,collection_id,topDeal)
-
-          }
+                }
+            }else {
+                if (productListSearView.isNullOrEmpty())
+                    callNetwork(searchText,collection_id,topDeal)
+                else{
+                    shimmerFrameLayout.visibility = View.GONE
+                    shimmerFrameLayout.stopShimmerAnimation()
+                    recyclerview_search_product.visibility = View.VISIBLE
+                    searchAdapter.replaceItems(productListSearView)
+                    searchAdapter.notifyDataSetChanged()
+                    text_items_count.text = productListSearView.size.toString()
+                    text_items_count.visibility = View.VISIBLE
+                    text_header_product_count.visibility = View.VISIBLE
+                }
+            }
             setupSearch()
 
             swipe_refresh_search.setOnRefreshListener {
@@ -132,26 +157,43 @@ class SearchFragment : Fragment() , RecyclerViewCallback {
             }
 
 
-       /*     try {
-                productList= args.getParcelableArrayList<Product>("products") as ArrayList<Product>
-                productList[0].name?.let { Log.e("Product", it)
+            /*     try {
+                     productList= args.getParcelableArrayList<Product>("products") as ArrayList<Product>
+                     productList[0].name?.let { Log.e("Product", it)
 
-                }
-            }catch ( exception: Exception){
+                     }
+                 }catch ( exception: Exception){
 
-            }*/
+                 }*/
 
 
         } else {
             // This form Search Tap itself
             activityHostID = Constants.Activty_Host_Search
             if (BaseActivity.searchTapSearchResponse != null) {
-                pageNumber += 1
-                retrieveList(BaseActivity.searchTapSearchResponse!!,activityHostID,true)
+              //  pageNumber += 1
+
                 setupSearch()
-                shimmerFrameLayout.visibility = View.GONE
-                shimmerFrameLayout.stopShimmerAnimation()
-                recyclerview_search_product.visibility = View.VISIBLE
+
+                if (productListSearView.isNullOrEmpty())
+                    callNetwork(searchText,collection_id,topDeal)
+                else{
+                    shimmerFrameLayout.visibility = View.GONE
+                    shimmerFrameLayout.stopShimmerAnimation()
+                    recyclerview_search_product.visibility = View.VISIBLE
+                    searchAdapter.replaceItems(productListSearView)
+                    searchAdapter.notifyDataSetChanged()
+                    text_items_count.visibility = View.VISIBLE
+                    text_items_count.text = productListSearView.size.toString()
+                    text_header_product_count.visibility = View.VISIBLE
+                }
+
+
+
+//                retrieveList(BaseActivity.searchTapSearchResponse!!,activityHostID,true)
+//                shimmerFrameLayout.visibility = View.GONE
+//                shimmerFrameLayout.stopShimmerAnimation()
+//                recyclerview_search_product.visibility = View.VISIBLE
                 btn_sort_search.setOnClickListener {
                     if(!productListSearView.isNullOrEmpty()){
 
@@ -181,7 +223,7 @@ class SearchFragment : Fragment() , RecyclerViewCallback {
                 swipe_refresh_search.isRefreshing = false
                 loadWithRefresh = true
                 if (pageNumber > 1)
-                pageNumber -= 1
+                    pageNumber -= 1
                 callNetwork(searchText,collection_id,topDeal)
             }
 
@@ -196,7 +238,7 @@ class SearchFragment : Fragment() , RecyclerViewCallback {
 
                 isAscending = !isAscending
 
-               searchAdapter.replaceItems(productListSearView)
+                searchAdapter.replaceItems(productListSearView)
                 searchAdapter.notifyDataSetChanged()
             }
         }
@@ -236,17 +278,17 @@ class SearchFragment : Fragment() , RecyclerViewCallback {
                 when (state) {
 
                     BottomSheetBehavior.STATE_HIDDEN -> {
-                      //  card_total.visibility = View.VISIBLE
+                        //  card_total.visibility = View.VISIBLE
 
                     }
                     BottomSheetBehavior.STATE_EXPANDED ->{
-                     //   card_total.visibility = View.GONE
+                        //   card_total.visibility = View.GONE
                     }
                     BottomSheetBehavior.STATE_COLLAPSED ->{
 
                     }
                     BottomSheetBehavior.STATE_DRAGGING -> {
-                       // card_total.visibility = View.GONE
+                        // card_total.visibility = View.GONE
 
                     }
                     BottomSheetBehavior.STATE_SETTLING -> {
@@ -254,7 +296,7 @@ class SearchFragment : Fragment() , RecyclerViewCallback {
 
                     }
                     BottomSheetBehavior.STATE_HALF_EXPANDED -> {
-                     //   card_total.visibility = View.GONE
+                        //   card_total.visibility = View.GONE
 
                     }
                 }
@@ -306,10 +348,10 @@ class SearchFragment : Fragment() , RecyclerViewCallback {
 
         recycler_sheet_filter.adapter = filterAdapter
         btn_apply_filters.setOnClickListener {
-             appliedFilters = filterAdapter.filterValues
+            appliedFilters = filterAdapter.filterValues
             collapseSheet()
             callFilterNetwork()
-         //   Toasty.success(requireContext(),"Apply Clicked",Toasty.LENGTH_LONG)
+            //   Toasty.success(requireContext(),"Apply Clicked",Toasty.LENGTH_LONG)
         }
         text_filter_by.setOnClickListener{
             collapseSheet()
@@ -330,10 +372,10 @@ class SearchFragment : Fragment() , RecyclerViewCallback {
         val listOfIDS= appliedFilters.map {  spec ->
             spec.id
         } as ArrayList<Int>
-val applyWithRequestBody = ApplyFilterRequest(listOfIDS,productTextSearch,collectionID = collection_id,categoryID =topDeal
-)
+        val applyWithRequestBody = ApplyFilterRequest(listOfIDS,productTextSearch,collectionID = collection_id,categoryID =topDeal
+        )
 
-val callFilterNetwork = apiInterface.applySearchFilter(applyWithRequestBody)
+        val callFilterNetwork = apiInterface.applySearchFilter(applyWithRequestBody)
         callFilterNetwork.enqueue(object : Callback<FilterSearchRepsonse?> {
             override fun onResponse(
                 call: retrofit2.Call<FilterSearchRepsonse?>,
@@ -344,7 +386,7 @@ val callFilterNetwork = apiInterface.applySearchFilter(applyWithRequestBody)
                 val repsonse: FilterSearchRepsonse? = response.body()
                 val text: String? = repsonse?.message
                 if (text != null && text == "") {
-               updateListWith(repsonse)
+                    updateListWith(repsonse)
                 } else if (text != null) {
                     //  Toasty.error(applicationContext, "$text page", Toast.LENGTH_LONG, true).show();
                 }
@@ -361,34 +403,34 @@ val callFilterNetwork = apiInterface.applySearchFilter(applyWithRequestBody)
     }
 
 
-private fun callNetwork(searchText:String?, collection_id:Int?,topDeal:Int?){
-var collectionIDSend:Int? = null
-    var topDealToSend :Int? = null
-    if (collection_id != 0 && collection_id != null){// because getting data from bundle = 0
-        collectionIDSend  = collection_id
-        activityHostID = Constants.Activity_Host_Home
-    } else if (topDeal != 0 && topDeal != null){
-        activityHostID = Constants.Activity_Host_Home
-        topDealToSend = topDeal
-    }
-    if (islastPage)
-        return
-    isSearchLoading = true
-    var number = pageNumber
-    if (!searchText.isNullOrEmpty()){
-        number = 1
-    }
-        val call3 = apiInterface.testSearchProducts(topDealToSend,collectionIDSend,searchText,number)
+    private fun callNetwork(searchText:String?, collection_id:Int?,topDeal:Int?){
+        var collectionIDSend:Int? = null
+        var topDealToSend :Int? = null
+        if (collection_id != 0 && collection_id != null){// because getting data from bundle = 0
+            collectionIDSend  = collection_id
+            activityHostID = Constants.Activity_Host_Home
+        } else if (topDeal != 0 && topDeal != null){
+            activityHostID = Constants.Activity_Host_Home
+            topDealToSend = topDeal
+        }
+        if (islastPage)
+            return
+        isSearchLoading = true
+        var number = pageNumber
+        if (!searchText.isNullOrEmpty()){
+            number = 1
+        }
+        call3 = apiInterface.testSearchProducts(topDealToSend,collectionIDSend,searchText,number)
 
-        call3.enqueue(object : Callback<SearchResponse?> {
+        call3!!.enqueue(object : Callback<SearchResponse?> {
             override fun onResponse(
                 call: retrofit2.Call<SearchResponse?>,
                 response: Response<SearchResponse?>
             ) {
-               shimmerFrameLayout.stopShimmerAnimation()
+                shimmerFrameLayout.stopShimmerAnimation()
                 shimmerFrameLayout.visibility = View.GONE
                 isSearchLoading = false
-                 recyclerview_search_product.visibility = View.VISIBLE
+                recyclerview_search_product.visibility = View.VISIBLE
                 val erroBody = response.errorBody().toString()
                 val header = response.headers()
                 val loginResponse: SearchResponse? = response.body()
@@ -405,7 +447,7 @@ var collectionIDSend:Int? = null
 
                     if((!searchText.isNullOrEmpty())||loadWithRefresh)
 
-                    retrieveList(loginResponse,activityHostID,true)
+                        retrieveList(loginResponse,activityHostID,true)
                     else
                         retrieveList(loginResponse,activityHostID)
 
@@ -419,12 +461,14 @@ var collectionIDSend:Int? = null
                 call: retrofit2.Call<SearchResponse?>,
                 t: Throwable
             ) {
-                shimmerFrameLayout.stopShimmerAnimation()
-                shimmerFrameLayout.visibility = View.GONE
-                isSearchLoading = false
-            Toasty.warning(requireContext(),"Check Internet Connection").show()
-                recyclerview_search_product.visibility = View.VISIBLE
-                call.cancel()
+                if (shimmerFrameLayout != null){
+                    shimmerFrameLayout.stopShimmerAnimation()
+                    shimmerFrameLayout.visibility = View.GONE
+                    isSearchLoading = false
+                    Toasty.warning(requireContext(),"Check Internet Connection").show()
+                    recyclerview_search_product.visibility = View.VISIBLE
+                    call.cancel()
+                }
             }
         })
 
@@ -434,7 +478,7 @@ var collectionIDSend:Int? = null
 
     override fun onResume() {
         super.onResume()
-       // shimmerFrameLayout.startShimmerAnimation()
+        // shimmerFrameLayout.startShimmerAnimation()
 
     }
 
@@ -444,8 +488,8 @@ var collectionIDSend:Int? = null
             it?.let { resource ->
                 when (resource.status) {
                     Status.SUCCESS -> {
-                           shimmerFrameLayout.stopShimmerAnimation()
-                          shimmerFrameLayout.visibility = View.GONE
+                        shimmerFrameLayout.stopShimmerAnimation()
+                        shimmerFrameLayout.visibility = View.GONE
 
                         recyclerview_search_product.visibility = View.VISIBLE
                         //  progressBar.visibility = View.GONE
@@ -468,94 +512,95 @@ var collectionIDSend:Int? = null
 
     }
 
-private fun updateListWith(filterResponse:FilterSearchRepsonse){
-    val filterProducts = filterResponse.data
-    searchAdapter.replaceItems(filterProducts)
-    searchAdapter.notifyDataSetChanged()
-    text_items_count.text = filterProducts.size.toString()
- //  filterAdapter.notifyDataSetChanged()
-}
+    private fun updateListWith(filterResponse:FilterSearchRepsonse){
+        val filterProducts = filterResponse.data
+        searchAdapter.replaceItems(filterProducts)
+        searchAdapter.notifyDataSetChanged()
+        text_items_count.text = filterProducts.size.toString()
+        //  filterAdapter.notifyDataSetChanged()
+    }
 
-private fun retrieveList(searchResponse:SearchResponse, fragmentTapHost:Int, willReplace:Boolean = false){
-    loadWithRefresh = false
-    val specs = searchResponse.data.specifications
-    var data = searchResponse.data.products
+    private fun retrieveList(searchResponse:SearchResponse, fragmentTapHost:Int, willReplace:Boolean = false){
+        loadWithRefresh = false
+        val specs = searchResponse.data.specifications
+        var data = searchResponse.data.products
 //this for no items in store
 
-    if( BaseActivity.homeSearchResponse == null || BaseActivity.searchTapSearchResponse == null){
-        if (data.isNullOrEmpty())
-        text_no_search_in_store.visibility = View.VISIBLE
-    }
-
-   val listOfProductInCart =  getCarts()
-    val listOfProductInWishList = getWish()
-  /*  data.forEach { product ->
-        listOfProductInCart.forEach {productChecked ->
-            if (product.id == productChecked){
-                product.isCartSelected = true
-            }
-        }
-    }*/
-
-    listOfProductInCart.forEach { cartID ->
-        data.forEach {product ->
-            if (product.id == cartID){
-                product.isCartSelected = true
-            }
+        if( BaseActivity.homeSearchResponse == null || BaseActivity.searchTapSearchResponse == null){
+            if (data.isNullOrEmpty())
+                text_no_search_in_store.visibility = View.VISIBLE
         }
 
-    }
+        val listOfProductInCart =  getCarts()
+        val listOfProductInWishList = getWish()
+        /*  data.forEach { product ->
+              listOfProductInCart.forEach {productChecked ->
+                  if (product.id == productChecked){
+                      product.isCartSelected = true
+                  }
+              }
+          }*/
 
-
-    listOfProductInWishList.forEach { wishID ->
-        data.forEach{product ->
-            if (product.id == wishID){
-                product.isWishSelected = true
+        listOfProductInCart.forEach { cartID ->
+            data.forEach {product ->
+                if (product.id == cartID){
+                    product.isCartSelected = true
+                }
             }
+
         }
 
+
+        listOfProductInWishList.forEach { wishID ->
+            data.forEach{product ->
+                if (product.id == wishID){
+                    product.isWishSelected = true
+                }
+            }
+
+        }
+        suggestions = productListSearView.map { it.name }
+        text_items_count.visibility = View.VISIBLE
+        recyclerview_search_product.visibility = View.VISIBLE
+        text_header_product_count.visibility = View.VISIBLE
+
+        if (activityHostID == Constants.Activity_Host_Home){
+            BaseActivity.homeSearchResponse = searchResponse
+        } else if (activityHostID == Constants.Activty_Host_Search){
+            BaseActivity.searchTapSearchResponse = searchResponse
+        }
+        if (!willReplace) {
+            productListSearView.addAll(data)
+            //searchAdapter.addItems(data)
+            itemsCount  = productListSearView.size
+            // searchAdapter.addItems(data)
+
+            text_items_count?.text = itemsCount.toString()
+        }else{
+
+            itemsCount  =data.size
+            productListSearView = data
+
+            text_items_count?.text = itemsCount.toString()
+            searchAdapter.replaceItems(data)
+
+        }
+        searchAdapter.notifyDataSetChanged()
+
+        if (!specs.isNullOrEmpty()){
+            if (scrollToMore){
+                filterAdapter.addItems(specs)
+                filterAdapter.notifyDataSetChanged()
+            }else {
+                specs?.let { filterAdapter.replaceItems(it) }
+                filterAdapter.notifyDataSetChanged()
+            }
+
+        }
+        scrollToMore = false
+
+
     }
-    suggestions = productListSearView.map { it.name }
-    text_items_count.visibility = View.VISIBLE
-    recyclerview_search_product.visibility = View.VISIBLE
-    text_header_product_count.visibility = View.VISIBLE
-
-if (activityHostID == Constants.Activity_Host_Home){
-    BaseActivity.homeSearchResponse = searchResponse
-} else if (activityHostID == Constants.Activty_Host_Search){
-    BaseActivity.searchTapSearchResponse = searchResponse
-}
-    if (!willReplace) {
-        productListSearView.addAll(data)
-        //searchAdapter.addItems(data)
-        itemsCount  = productListSearView.size
-
-        text_items_count?.text = itemsCount.toString()
-    }else{
-
-        itemsCount  =data.size
-        productListSearView = data
-
-        text_items_count?.text = itemsCount.toString()
-        searchAdapter.replaceItems(data)
-
-    }
-    searchAdapter.notifyDataSetChanged()
-
-    if (!specs.isNullOrEmpty()){
-    if (scrollToMore){
-     filterAdapter.addItems(specs)
-        filterAdapter.notifyDataSetChanged()
-    }else {
-        specs?.let { filterAdapter.replaceItems(it) }
-        filterAdapter.notifyDataSetChanged()
-    }
-
-    }
-    scrollToMore = false
-
-
-}
     private fun collapseSheet(){
         bottomSheetBehavior.state = BottomSheetBehavior.STATE_COLLAPSED
         bottom_sheet_filters.visibility = View.GONE
@@ -573,7 +618,7 @@ if (activityHostID == Constants.Activity_Host_Home){
 
     private fun setupSearch(){
         //  val searchItem = menu.findItem(R.id.action_search)
-       // val view: View = requireActivity().findViewById(R.id.search_searchvc)
+        // val view: View = requireActivity().findViewById(R.id.search_searchvc)
         val searchView = requireActivity().findViewById(R.id.search_searchvc) as SearchView
         searchView.visibility = View.VISIBLE
         searchView.queryHint = getString(R.string.search)
@@ -623,7 +668,7 @@ if (activityHostID == Constants.Activity_Host_Home){
                             cursor.addRow(arrayOf(index, suggestion))
                     }
                 }
-       cursorAdapter.changeCursor(cursor)
+                cursorAdapter.changeCursor(cursor)
 
                 if (query.isNullOrBlank()){
                     hideKeyboard()
@@ -646,9 +691,9 @@ if (activityHostID == Constants.Activity_Host_Home){
                 val cursor = searchView.suggestionsAdapter.getItem(position) as Cursor
                 val selection = cursor.getString(cursor.getColumnIndex(SearchManager.SUGGEST_COLUMN_TEXT_1))
                 searchView.setQuery(selection, false)
-            //    val suggestProducts = ArrayList<Product>()
+                //    val suggestProducts = ArrayList<Product>()
                 val suggestProducts = productListSearView.filter { it.name == selection } as ArrayList<Product>
-               // suggestProducts.add(productListSearView[position])
+                // suggestProducts.add(productListSearView[position])
                 searchAdapter.replaceItems(suggestProducts)
                 searchAdapter.notifyDataSetChanged()
                 // Do something with selection
@@ -664,7 +709,8 @@ if (activityHostID == Constants.Activity_Host_Home){
     override fun onPause() {
         super.onPause()
         val searchView = requireActivity().findViewById(R.id.search_searchvc) as SearchView
-      searchView.setQuery("",false)
+        searchView.setQuery("",false)
+        call3?.cancel()
     }
 
     fun SearchView.getQueryTextChangeStateFlow()
@@ -696,7 +742,7 @@ if (activityHostID == Constants.Activity_Host_Home){
 
     private fun getCarts(): ArrayList<Int>{
         val gson = Gson()
-var s :ArrayList<Int> = ArrayList()
+        var s :ArrayList<Int> = ArrayList()
         val mPrefs: SharedPreferences =
             requireContext().getSharedPreferences("test", Context.MODE_PRIVATE)
         val prefsEditor: SharedPreferences.Editor = mPrefs.edit()
@@ -706,7 +752,7 @@ var s :ArrayList<Int> = ArrayList()
         var productsInCart: HashSet<Product>? = gson.fromJson(json, type)
 
         if (productsInCart != null){
-             s =    productsInCart.map {
+            s =    productsInCart.map {
                 it.id!!
             } as ArrayList<Int>
 
@@ -798,7 +844,7 @@ var s :ArrayList<Int> = ArrayList()
 
                         productsInCart!!.remove(productInCart)
                         wishManger.updateCarts(productsInCart!!)
-                   return }
+                        return }
                 }
 
 

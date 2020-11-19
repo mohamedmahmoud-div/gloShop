@@ -13,8 +13,10 @@ import androidx.annotation.RequiresApi
 import androidx.appcompat.widget.SearchView
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.constraintlayout.widget.ConstraintSet
+import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.bumptech.glide.Glide
 import com.treecode.GloShop.R
 import com.treecode.GloShop.data.api.RetrofitBuilder
 import com.treecode.GloShop.data.model.home.CartProduct
@@ -35,6 +37,7 @@ import com.treecode.GloShop.util.MyWishManger
 import com.example.mvvmcoorutines.data.api.ApiService
 import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
+import com.treecode.GloShop.ui.adapter.productdetails.ProductImageClickListener
 import es.dmoral.toasty.Toasty
 import kotlinx.android.synthetic.main.fragment_product_details.*
 import kotlinx.android.synthetic.main.fragment_search.*
@@ -55,7 +58,8 @@ private const val ARG_PARAM2 = "param2"
  * Use the [ProductDetailsFragment.newInstance] factory method to
  * create an instance of this fragment.
  */
-class ProductDetailsFragment : Fragment(),RecyclerViewCallback ,AllSpecsChangeListener{
+class ProductDetailsFragment : Fragment(),RecyclerViewCallback ,AllSpecsChangeListener,
+    ProductImageClickListener {
     private var swipeRefreshLayout: MultiSwipeRefreshLayout? =null
     private lateinit var productDetails: ProductDetailsData
 
@@ -74,15 +78,15 @@ class ProductDetailsFragment : Fragment(),RecyclerViewCallback ,AllSpecsChangeLi
     private var relatedProducts = ArrayList<Product>()
     private var colorSpecs = ArrayList<SpecValue>()
     private var textSpecs = ArrayList<SpecValue>()
-private var selectedColor:Int? = null
-  lateinit  var productCart :CartProduct
+    private var selectedColor:Int? = null
+    lateinit  var productCart :CartProduct
     private var selectedSpecs = ArrayList<SelectedSpec>()
     private val dicOfSelectedSepc = HashMap<String,String>()
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
     }
-var totalQuantity :Int? = null
+    var totalQuantity :Int? = null
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -110,10 +114,10 @@ var totalQuantity :Int? = null
         shimmerProductFrameLayout.startShimmerAnimation()
         setupViews()
         val searchView = requireActivity().findViewById(R.id.search_searchvc) as SearchView?
-            if (searchView != null) {
-                searchView.visibility = View.GONE
-            }
-         swipeRefreshLayout =   view.findViewById<MultiSwipeRefreshLayout>(R.id.swipe_refresh_product)
+        if (searchView != null) {
+            searchView.visibility = View.GONE
+        }
+        swipeRefreshLayout =   view.findViewById<MultiSwipeRefreshLayout>(R.id.swipe_refresh_product)
         swipeRefreshLayout!!.setSwipeableChildren(scrollable_product.id)
         arguments?.let {
             param1 = it.getString(ARG_PARAM1)
@@ -149,27 +153,30 @@ var totalQuantity :Int? = null
     private fun setupViews(){
         val  horizontalLayoutManager = LinearLayoutManager(this.context,
             LinearLayoutManager.HORIZONTAL,true)
+        horizontalLayoutManager.isSmoothScrollbarEnabled = true
+
         recyclerview_product_details_images.layoutManager = horizontalLayoutManager
-        productImageAdapter = ProductDetailsImageAdapter(productListOfImages)
+        productImageAdapter = ProductDetailsImageAdapter(productListOfImages,this)
         recyclerview_product_details_images.adapter = productImageAdapter
-val specsLayoutManager = LinearLayoutManager(this.context,
-    LinearLayoutManager.VERTICAL,false)
+        val specsLayoutManager = LinearLayoutManager(this.context,
+            LinearLayoutManager.VERTICAL,false)
         recyclerview_product_spec_change.layoutManager = specsLayoutManager
-       allSpecsAdapter = ProductsAllSpecAdapter(allSpecs,this)
+        allSpecsAdapter = ProductsAllSpecAdapter(allSpecs,this)
         recyclerview_product_spec_change.adapter = allSpecsAdapter
 
-   val reviewsLayoutManger =  LinearLayoutManager(this.context,LinearLayoutManager.HORIZONTAL,false)
+        val reviewsLayoutManger =  LinearLayoutManager(this.context,LinearLayoutManager.HORIZONTAL,false)
         recycler_reviews.layoutManager = reviewsLayoutManger
         reviewsAdapter = ProductReviewAdapter(productReviews)
         recycler_reviews.adapter = reviewsAdapter
 
         recyclerview_product_related_product.layoutManager = LinearLayoutManager(this.context,LinearLayoutManager.HORIZONTAL,false)
         relatedProductsAdapter = NewArrivalAdapter(relatedProducts,this){ product ->
-            Toast.makeText(this.context, product.name, Toast.LENGTH_SHORT).show()
             this.navigateToProductScreen(product)
         }
         recyclerview_product_related_product.adapter = relatedProductsAdapter
-
+        image_product_Zoom.setOnClickListener {
+            image_product_Zoom.visibility = View.GONE
+        }
 
     }
     private fun navigateToProductScreen(prodcut: Product){
@@ -182,7 +189,7 @@ val specsLayoutManager = LinearLayoutManager(this.context,
 
     }
     private fun isProductInCart(productId: Int){
-    val cartsManger  = CartsManger(requireContext())
+        val cartsManger  = CartsManger(requireContext())
         var inCart = false
         val product = cartsManger.getProduct(productID = productId)
         if (product != null) {
@@ -223,7 +230,7 @@ val specsLayoutManager = LinearLayoutManager(this.context,
         return first.zip(second).all { (x, y) -> x == y }
     }
     private fun getProductFromNetwork(productId:Int){
-val productDetailsCall = apiInterface.getProductDetails(productId)
+        val productDetailsCall = apiInterface.getProductDetails(productId)
         layou_product_details.visibility = View.GONE
         shimmerProductFrameLayout.visibility = View.VISIBLE
         shimmerProductFrameLayout.startShimmerAnimation()
@@ -240,15 +247,18 @@ val productDetailsCall = apiInterface.getProductDetails(productId)
                 val erroBody = response.errorBody().toString()
                 val header = response.headers()
                 val loginResponse: ProductDetailsResponse? = response.body()
+
                 val text: String? = loginResponse?.message
                 if(response.code() == 200){
                     if (text != null && text == "") {
+                        swipe_refresh_product.isRefreshing = false
+                      swipeRefreshLayout!!.isEnabled   = false
                         retrieveList(loginResponse)
                     } else if (text != null) {
                         //  Toasty.error(applicationContext, "$text page", Toast.LENGTH_LONG, true).show();
                     }
                 }else {
-                    layout_container_shimmer.visibility = View.INVISIBLE
+                    layout_container_shimmer.visibility = View.GONE
                     layou_product_details.visibility = View.GONE
                     text_product_internet_connection.visibility = View.VISIBLE
                     text_product_internet_connection.text = getString(R.string.out_of_stock)
@@ -276,7 +286,7 @@ val productDetailsCall = apiInterface.getProductDetails(productId)
 
     }
 
-    @SuppressLint("SetTextI18n")
+    @SuppressLint("SetTextI18n", "ResourceAsColor")
     private fun retrieveList(productDetailsResponse: ProductDetailsResponse) {
 //        swipe_refresh_product.isRefreshing = false
         layout_add_cart_product.visibility = View.VISIBLE
@@ -284,9 +294,9 @@ val productDetailsCall = apiInterface.getProductDetails(productId)
         productDetails = productDetailsResponse.data
         val cartsManger = CartsManger(requireContext())
         productCart = cartsManger.productAdapter(productDetails)
- productDetailsResponse.data.otherImages.forEach { otherImage ->
-     productListOfImages.add(otherImage.image)
- }
+        productDetailsResponse.data.otherImages.forEach { otherImage ->
+            productListOfImages.add(otherImage.image)
+        }
         if(productDetails.specification != null){
             val allValuesQuantity = productDetails.specification?.values!!.map {
                 it.quantity
@@ -311,9 +321,9 @@ val productDetailsCall = apiInterface.getProductDetails(productId)
 
    }   as ArrayList<SpecValue>*/
         productListOfImages.add(productDetailsResponse.data.img)
-       // productImageAdapter.addImages(productListOfImages)
+        // productImageAdapter.addImages(productListOfImages)
         productImageAdapter.notifyDataSetChanged()
-val reviews = productDetailsResponse.data.productReviews
+        val reviews = productDetailsResponse.data.productReviews
         if (!reviews.isNullOrEmpty() ){
             reviews?.let {
                 productReviews.addAll(it)
@@ -333,19 +343,25 @@ val reviews = productDetailsResponse.data.productReviews
             //    text__related_products.constraintLayout.top
         }
 
-val priceAfterChange = productDetails.priceAfterDicount
- val dicount = productDetails.discount
-  val offerType = productDetails.offerType
-     if(priceAfterChange != null&& dicount!=null && offerType != null){
-         text_product_offer_type.visibility = View.VISIBLE
-         text_price_after_product_deatails.visibility = View.VISIBLE
-         line_offer_change.visibility = View.VISIBLE
-         text_product_discount.visibility = View.VISIBLE
+        val priceAfterChange = productDetails.priceAfterDicount
+        val dicount = productDetails.discount
+        val offerType = productDetails.offerType
+        if(priceAfterChange != null&& dicount!=null && offerType != null) {
+            text_product_offer_type.visibility = View.VISIBLE
 
-         text_product_offer_type.text = offerType
-         text_price_after_product_deatails.text =  "$priceAfterChange ${getString(R.string.le)}"
-         text_product_discount.text = "$dicount%"
-     }
+            if (dicount != 0){
+                text_product_discount.visibility = View.VISIBLE
+                text_price_after_product_deatails.visibility = View.VISIBLE
+                line_offer_change.visibility = View.VISIBLE
+            }
+            text_product_offer_type.text = offerType
+            text_price_after_product_deatails.text =  "$priceAfterChange ${getString(R.string.le)}"
+            text_product_discount.text = "$dicount%"
+        }else if (offerType != null){
+            text_product_offer_type.visibility = View.VISIBLE
+            text_product_offer_type.text = offerType
+            text_product_offer_type.setTextColor(ContextCompat.getColor(requireContext(), R.color.red_rate))
+        }
         text_product_name_details_.text = productDetails.name
         text_value_description.text = productDetails.description
         text_value_category.text = productDetails.category.name
@@ -421,7 +437,7 @@ val priceAfterChange = productDetails.priceAfterDicount
 
                         productsInCart!!.remove(productInCart)
                         wishManger.updateCarts(productsInCart!!)
-                    return}
+                        return}
                 }
 
 
@@ -446,9 +462,9 @@ val priceAfterChange = productDetails.priceAfterDicount
 
     @RequiresApi(Build.VERSION_CODES.N)
     override fun onChange(spec: Specification, specValue:SpecValue) {
-            totalQuantity = specValue.quantity
+        totalQuantity = specValue.quantity
 
-val specID = spec.id
+        val specID = spec.id
         selectedSpecs.forEach {
             if(it.id == specID){
 
@@ -461,10 +477,10 @@ val specID = spec.id
         }
 
         selectedSpecs.add(SelectedSpec(id = specID,specValue = specValue.value,specChangeID = specValue.id))
-dicOfSelectedSepc.put(spec.name,specValue.value)
+        dicOfSelectedSepc.put(spec.name,specValue.value)
 
 
-productCart.selectedIDS = selectedSpecs
+        productCart.selectedIDS = selectedSpecs
         if (!productCart.seletectedSpecValuesString.contains(specValue.value)){
             //productCart.seletectedSpecValuesString = productCart.seletectedSpecValuesString + "," +specValue.value
         }
@@ -481,11 +497,11 @@ productCart.selectedIDS = selectedSpecs
                 val erroBody = response.errorBody().toString()
                 val header = response.headers()
                 val nextProductSpecResponse: NextProductSpecResponse? = response.body()
-                    if (nextProductSpecResponse?.data.isNullOrEmpty()){
-                        return
-                    } else{
-                        updateSpecs(nextProductSpecResponse!!.data)
-                    }
+                if (nextProductSpecResponse?.data.isNullOrEmpty()){
+                    return
+                } else{
+                    updateSpecs(nextProductSpecResponse!!.data)
+                }
                 val text: String? = nextProductSpecResponse?.message
                 if (text != null && text == "") {
                 } else if (text != null) {
@@ -510,10 +526,15 @@ productCart.selectedIDS = selectedSpecs
         //allSpecsAdapter.addSpecs(newSpecs)
         allSpecsAdapter.notifyDataSetChanged()
     }
+
+    override fun onImageSelected(path: String) {
+        image_product_Zoom.visibility = View.VISIBLE
+        Glide.with(requireContext()).load(path).into(image_product_Zoom);
+
+    }
 }
 class SelectedSpec (
     var id:Int,
     var specChangeID:Int,
     var specValue:String
 )
-
