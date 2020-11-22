@@ -13,7 +13,7 @@ class ProductDetailsImageAdapter (private val productListOfImages:ArrayList<Stri
         fun bind(image: String) {
             //
 
-            Glide.with(itemView).load(image).centerCrop().into(itemView.image_product_details);
+            Glide.with(itemView).load(image).into(itemView.image_product_details);
 
         }
     }

@@ -275,7 +275,7 @@ class ProductDetailsFragment : Fragment(),RecyclerViewCallback ,AllSpecsChangeLi
                 t: Throwable
             ) {
                 shimmerProductFrameLayout.stopShimmerAnimation()
-                layout_container_shimmer.visibility = View.INVISIBLE
+                layout_container_shimmer.visibility = View.GONE
                 layou_product_details.visibility = View.GONE
                 text_product_internet_connection.visibility = View.VISIBLE
                 layout_add_cart_product.visibility = View.GONE
@@ -361,6 +361,13 @@ class ProductDetailsFragment : Fragment(),RecyclerViewCallback ,AllSpecsChangeLi
             text_product_offer_type.visibility = View.VISIBLE
             text_product_offer_type.text = offerType
             text_product_offer_type.setTextColor(ContextCompat.getColor(requireContext(), R.color.red_rate))
+        }
+        if(productDetails.relatedProducts.isNullOrEmpty()){
+            recyclerview_product_related_product.visibility = View.GONE
+            text__related_products.visibility = View.GONE
+        }else{
+            recyclerview_product_related_product.visibility = View.VISIBLE
+            text__related_products.visibility = View.VISIBLE
         }
         text_product_name_details_.text = productDetails.name
         text_value_description.text = productDetails.description
@@ -529,7 +536,7 @@ class ProductDetailsFragment : Fragment(),RecyclerViewCallback ,AllSpecsChangeLi
 
     override fun onImageSelected(path: String) {
         image_product_Zoom.visibility = View.VISIBLE
-        Glide.with(requireContext()).load(path).into(image_product_Zoom);
+        Glide.with(requireContext()).load(path).centerCrop().into(image_product_Zoom);
 
     }
 }

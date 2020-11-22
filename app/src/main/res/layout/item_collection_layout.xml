@@ -44,6 +44,7 @@
                 app:layout_constraintTop_toBottomOf="@id/imageView_collection"
                 app:layout_constraintEnd_toEndOf="parent"
                 android:layout_marginBottom="@dimen/small_margin"
+                android:lines="1"
                 />
 
 

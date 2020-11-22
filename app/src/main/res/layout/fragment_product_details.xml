@@ -23,6 +23,7 @@
             app:layout_constraintBottom_toBottomOf="parent"
             android:text="@string/please_check_internet_connection"
             android:textColor="@color/red"
+            android:layout_marginStart="@dimen/small_margin"
             android:fontFamily="@font/poppins_bold"
             android:textSize="@dimen/large_text"
             android:visibility="gone"  />
@@ -420,7 +421,7 @@
 
         </ScrollView>
 
-        <ImageView
+        <com.ortiz.touchview.TouchImageView
             android:id="@+id/image_product_Zoom"
             android:layout_width="match_parent"
             android:layout_height="match_parent"

@@ -140,6 +140,8 @@
                     app:layout_constraintStart_toEndOf="@id/text_product_le"
                     app:layout_constraintTop_toTopOf="parent"
                     android:visibility="gone"
+                    android:lines="1"
+
                     android:textColor="@color/red_rate"
                     android:textSize="@dimen/size_body"
 
@@ -201,6 +203,8 @@
                         android:fontFamily="@font/poppins_light"
                         android:layout_marginEnd="@dimen/small_margin"
                             android:textSize="@dimen/size_body"
+                        android:lines="1"
+
                         android:textColor="@color/white" />
 
                 </LinearLayout>
