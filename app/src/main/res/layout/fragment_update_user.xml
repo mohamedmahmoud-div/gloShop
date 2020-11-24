@@ -1,0 +1,130 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    tools:context=".ui.main.profile.addressbook.AddAdressLocationFragment">
+    <androidx.appcompat.widget.Toolbar android:id="@+id/update_profile_bar"
+        app:layout_constraintTop_toTopOf="parent"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        app:title="@string/Login"
+
+        android:background="@drawable/gradient_toolbar"
+        android:layout_marginBottom="@dimen/sections_margin"
+        >
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+
+            >
+
+            <!--  <TextView
+                  android:id="@+id/title_your"
+                  android:layout_width="wrap_content"
+                  android:layout_height="wrap_content"
+                  android:fontFamily="@font/poppins_bold"
+                  android:textSize="@dimen/title"
+                  android:text="Your"
+                  android:textStyle="bold"
+                  app:layout_constraintStart_toStartOf="parent"
+                  app:layout_constraintTop_toTopOf="parent"
+                  app:layout_constraintBottom_toBottomOf="parent"
+                  android:layout_marginStart="@dimen/activity_horizontal_margin"
+                  android:textColor="@color/white"
+                  android:layout_marginEnd="@dimen/sections_margin"
+                  />
+              <TextView
+                  android:id="@+id/title_logo"
+                  android:layout_width="wrap_content"
+                  android:layout_height="wrap_content"
+                  android:text="Logo"
+                  app:layout_constraintStart_toEndOf="@id/title_your"
+
+                  app:layout_constraintTop_toTopOf="parent"
+                  app:layout_constraintBottom_toBottomOf="parent"
+                  android:textColor="@color/orange"
+                  android:fontFamily="@font/poppins_bold"
+                  android:textSize="@dimen/title"
+                  />-->
+            <ImageView
+                android:layout_width="?attr/actionBarSize"
+                android:layout_height="?attr/actionBarSize"
+            app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+
+                android:background="@drawable/iconbar"
+                />
+            <TextView
+                android:id="@+id/text_profile_bar_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+
+                app:layout_constraintStart_toStartOf="parent"
+                android:layout_marginStart="@dimen/sections_margin"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"
+                android:text="@string/update_user"
+                android:fontFamily="@font/poppins_medium"
+                android:textColor="@color/black"
+                android:lines="1"
+                android:textSize="@dimen/font_title"
+                />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.appcompat.widget.Toolbar>
+
+    <EditText
+        android:id="@+id/edit_update_store_name"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/size_round_edit_text"
+        android:layout_marginStart="@dimen/margin_medium"
+        android:layout_marginTop="@dimen/fragment_vertical_margin"
+        android:layout_marginEnd="@dimen/margin_medium"
+        android:hint="@string/store_name"
+        android:textColor="@color/black"
+        android:padding="@dimen/small_margin"
+        android:background="@drawable/edit_text_border"
+        android:selectAllOnFocus="true"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/update_profile_bar"
+
+        />
+
+
+    <Button
+        android:id="@+id/btn_update_store_name"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/button_rounded"
+        android:text="@string/save"
+        android:layout_marginHorizontal="@dimen/size_24"
+        app:layout_constraintBottom_toBottomOf="parent"
+        android:layout_marginBottom="@dimen/sections_margin"
+        android:layout_marginTop="@dimen/sections_margin"
+        android:layout_gravity="center"
+        android:fontFamily="@font/poppins_medium"
+        android:textSize="@dimen/title"
+        android:textColor="@color/white"
+        />
+    <ProgressBar
+        android:id="@+id/loading"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginStart="32dp"
+        android:layout_marginTop="64dp"
+        android:layout_marginEnd="32dp"
+        android:layout_marginBottom="64dp"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.3" />
+</androidx.constraintlayout.widget.ConstraintLayout>

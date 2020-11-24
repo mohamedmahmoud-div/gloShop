@@ -17,6 +17,7 @@ import com.treecode.GloShop.ui.main.profile.base.MainProfileFragment
 import com.treecode.GloShop.util.AddressManger
 import com.treecode.GloShop.util.SessionManager
 import com.example.mvvmcoorutines.data.api.ApiService
+import com.treecode.GloShop.ui.main.profile.UserFragment
 import es.dmoral.toasty.Toasty
 import kotlinx.android.synthetic.main.fragment_my_adress_book.*
 import retrofit2.Call
@@ -123,7 +124,7 @@ private var listOFAddresBook = HashSet<AddressBook>()
             val fc: ActivityFragmentChangeListener? = activity as ActivityFragmentChangeListener?
             fc?.replaceFragment(cartFragment)
         } else {
-            val mainProfileFragment = MainProfileFragment()
+            val mainProfileFragment = UserFragment()
             val fc: ActivityFragmentChangeListener? = activity as ActivityFragmentChangeListener?
             fc?.replaceFragment(mainProfileFragment)
         }

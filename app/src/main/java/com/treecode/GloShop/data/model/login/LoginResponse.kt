@@ -45,5 +45,6 @@ class AccountUser {
     @SerializedName("birth_date")
     var birthDate:String? = ""
 
-
+      @SerializedName("store_name")
+      val storeName:String? =null
 }

@@ -23,25 +23,16 @@ object RetrofitBuilder {
         interceptor.setLevel(HttpLoggingInterceptor.Level.BASIC).setLevel(HttpLoggingInterceptor.Level.BODY).setLevel(HttpLoggingInterceptor.Level.HEADERS)
         val client =
             OkHttpClient.Builder().addInterceptor(interceptor).build()
-//         val langauge =  Locale.getDefault().getDisplayLanguage();
-//         var languageHeadeValue = "en"
-//if(langauge == "English"){
-//languageHeadeValue = "en"
-//}else if (langauge == "العربية") {
-//    languageHeadeValue = "ar"
-//
-//}
+
         val client2: OkHttpClient =
             OkHttpClient.Builder().addInterceptor(object : Interceptor {
                 @Throws(IOException::class)
                 override fun intercept(chain: Interceptor.Chain): Response {
                     var langauge =  Locale.getDefault().language
-                    //  var languageHeadeValue = "en"
 
                     if (BaseActivity.dLocale != null){
                         if (!BaseActivity.dLocale!!.language.isNullOrEmpty()){
                             langauge = BaseActivity.dLocale!!.language
-                            // languageHeadeValue = langauge
 
                         }
                     }

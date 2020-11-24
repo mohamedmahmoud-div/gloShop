@@ -134,12 +134,12 @@
     <string name="address_header">Address:</string>
     <string name="phone_header">Phone:</string>
     <string name="email_header">Email:</string>
-    <string name="leave_a_comment">Leave A Comment</string>
+    <string name="leave_a_comment">Leave A Message</string>
     <string name="your_name">Your Name</string>
     <string name="your_email">Your Email</string>
     <string name="your_message">Your Message</string>
     <string name="social_links">Social Links</string>
-    <string name="send_comment">Send Comment</string>
+    <string name="send_comment">Send Message</string>
     <string name="empty_message">Pleas Type Your Message</string>
     <string name="message_send_success">Message Sent</string>
     <string name="sorry_no_products_in_our_store"> No  products available  in our Store</string>
@@ -173,6 +173,10 @@
     <string name="english">English</string>
 
     <string name="apply">Apply</string>
+    <string name="my_account">My Account</string>
+    <string name="store_name">Store name:</string>
+    <string name="update_user">Update Profile</string>
+    <string name="invalid_store_name">Store name is empty</string>
 
     <string-array name="Countries">
         <item>Java</item>

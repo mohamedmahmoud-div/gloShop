@@ -106,5 +106,11 @@ fun getCountries(@Header("Authorization") token: String):Call<CountryAddressReso
     @FormUrlEncoded
     @POST("/api/v1/send-promo-code/")
     fun sendPromoCode(@Field("code")code:String,@Field("address_book_id")addressID:Int,@Header("Authorization") token: String):Call<PromoCodeResponse>
+    @GET("/api/v1/users/{id}")
+    fun getProfileDate(@Query("id")userID:String,@Header("Authorization") token: String):Call<LoginResponse>
+    @FormUrlEncoded
+    @PATCH("/api/v1/users/{id}/")
+    fun updateProfile(@Field("store_name")storeName:String, @Path("id")userID:Int, @Header("Authorization") token: String):Call<LoginResponse>
+
 }
 //,@Query("page") pageNumber:Int?,@Query("page_size") pageSize:Int = 15

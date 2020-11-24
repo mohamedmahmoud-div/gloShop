@@ -120,12 +120,12 @@
     <string name="address_header">العنوان</string>
     <string name="phone_header">رقم المحمول:</string>
     <string name="email_header">البريد الاكتروني:</string>
-    <string name="leave_a_comment">اترك تعليق</string>
+    <string name="leave_a_comment">اترك رسالتك</string>
     <string name="your_name">اسمك</string>
     <string name="your_email">بريدك الاكتروني</string>
     <string name="your_message">رسالتك</string>
     <string name="social_links">التواصل الاجتماعي </string>
-    <string name="send_comment">ارسال تعليقك</string>
+    <string name="send_comment">ارسال الرسالة</string>
     <string name="empty_message">برجاء ادخال الرسالة</string>
     <string name="message_send_success">تم الارسال </string>
     <string name="sorry_no_products_in_our_store">لا يوجد منتجات حاليا</string>
@@ -144,7 +144,7 @@
     <string name="percentage">%</string>
     <string name="fullname">الاسم</string>
     <string name="address_selected">تم اختيار العنوان</string>
-    <string name="apply_promo_code">استخدام الكور</string>
+    <string name="apply_promo_code">استخدام الكود</string>
     <string name="insert_promo_code">من فضلك ادخل كود الخصم</string>
     <string name="discount">الخصصم</string>
     <string name="filldata">من فضلك املي البيانات</string>
@@ -154,8 +154,12 @@
     <string name="invalid_phone">من فضلك ادخل رقم الهاتف صحيح</string>
     <string name="invalid_region">من فضلك ادحل المنطفة</string>
     <string name="username_or_email">اسم المستخدم او البريد الاكتروني</string>
-    <string name="change_language">تغير اللفة</string>
+    <string name="change_language">تغير اللغة</string>
     <string name="english">الانجليزية</string>
     <string name="arabic">العربية</string>
     <string name="apply">تأكيد</string>
+    <string name="my_account">حسابي</string>
+    <string name="store_name">اسم التاجر :</string>
+    <string name="update_user">تحديث البيانات</string>
+    <string name="invalid_store_name">اسم المتجر فارغ</string>
 </resources>

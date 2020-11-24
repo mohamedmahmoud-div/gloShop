@@ -41,6 +41,7 @@ import com.treecode.GloShop.ui.adapter.productdetails.ProductImageClickListener
 import es.dmoral.toasty.Toasty
 import kotlinx.android.synthetic.main.fragment_product_details.*
 import kotlinx.android.synthetic.main.fragment_search.*
+import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 import java.util.*
@@ -60,6 +61,7 @@ private const val ARG_PARAM2 = "param2"
  */
 class ProductDetailsFragment : Fragment(),RecyclerViewCallback ,AllSpecsChangeListener,
     ProductImageClickListener {
+    private lateinit var productDetailsCall: Call<ProductDetailsResponse>
     private var swipeRefreshLayout: MultiSwipeRefreshLayout? =null
     private lateinit var productDetails: ProductDetailsData
 
@@ -146,7 +148,7 @@ class ProductDetailsFragment : Fragment(),RecyclerViewCallback ,AllSpecsChangeLi
         val cartsManger = CartsManger(requireContext())
         val cart = cartsManger.getAllProducts()
         if (!cart.isNullOrEmpty()){
-            button_cart_count.visibility = View.VISIBLE
+            button_cart_count.visibility = View.GONE
             button_cart_count.text = "${cart.size}"
         }
     }
@@ -230,7 +232,7 @@ class ProductDetailsFragment : Fragment(),RecyclerViewCallback ,AllSpecsChangeLi
         return first.zip(second).all { (x, y) -> x == y }
     }
     private fun getProductFromNetwork(productId:Int){
-        val productDetailsCall = apiInterface.getProductDetails(productId)
+         productDetailsCall = apiInterface.getProductDetails(productId)
         layou_product_details.visibility = View.GONE
         shimmerProductFrameLayout.visibility = View.VISIBLE
         shimmerProductFrameLayout.startShimmerAnimation()
@@ -274,6 +276,9 @@ class ProductDetailsFragment : Fragment(),RecyclerViewCallback ,AllSpecsChangeLi
                 call: retrofit2.Call<ProductDetailsResponse?>,
                 t: Throwable
             ) {
+                if (t.message == "Canceled"){
+                    return
+                }
                 shimmerProductFrameLayout.stopShimmerAnimation()
                 layout_container_shimmer.visibility = View.GONE
                 layou_product_details.visibility = View.GONE
@@ -289,9 +294,11 @@ class ProductDetailsFragment : Fragment(),RecyclerViewCallback ,AllSpecsChangeLi
     @SuppressLint("SetTextI18n", "ResourceAsColor")
     private fun retrieveList(productDetailsResponse: ProductDetailsResponse) {
 //        swipe_refresh_product.isRefreshing = false
+
         layout_add_cart_product.visibility = View.VISIBLE
 
         productDetails = productDetailsResponse.data
+
         val cartsManger = CartsManger(requireContext())
         productCart = cartsManger.productAdapter(productDetails)
         productDetailsResponse.data.otherImages.forEach { otherImage ->
@@ -374,12 +381,21 @@ class ProductDetailsFragment : Fragment(),RecyclerViewCallback ,AllSpecsChangeLi
         text_value_category.text = productDetails.category.name
         text_price_product_details.text = productDetails.price.toString()
         text_rating_percent.text = productDetails.reviews.toString()
+        if (productDetails.availability ==0 ){
+            text_product_discount.text = getText(R.string.out_of_stock)
+            text_product_discount.visibility = View.VISIBLE
+        }
         relatedProducts  = productDetails.relatedProducts
         relatedProductsAdapter.addNewItems(relatedProducts)
         relatedProductsAdapter.notifyDataSetChanged()
 
     }
 
+    override fun onPause() {
+        super.onPause()
+        if (productDetailsCall != null)
+        productDetailsCall.cancel()
+    }
     override fun onRecycleViewCartClicked(product: Product,checked: Boolean) {
         val gson = Gson()
 

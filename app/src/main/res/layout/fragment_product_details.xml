@@ -48,7 +48,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:background="@color/white"
-                    android:visibility="gone"
+                    android:visibility="visible"
                     app:layout_constraintTop_toTopOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     android:orientation="vertical">
@@ -94,6 +94,7 @@
                                 android:layout_height="@dimen/size_24"
                                 android:layout_marginEnd="@dimen/activity_horizontal_margin"
                                 android:background="@drawable/ic_add_cart"
+                                android:visibility="gone"
                                 app:layout_constraintEnd_toEndOf="parent"
                                 app:layout_constraintTop_toTopOf="@id/text_product_name_details_" />
 
@@ -399,7 +400,7 @@
                         android:layout_marginTop="15dp"
                         android:orientation="vertical"
                         shimmer:duration="800"
-                        android:visibility="visible"
+                        android:visibility="gone"
                         >
 
                         <!-- Adding 7 rows of placeholders -->
@@ -425,6 +426,7 @@
             android:id="@+id/image_product_Zoom"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:layout_margin="@dimen/fragment_vertical_margin"
             android:visibility="gone"
             />
         <LinearLayout

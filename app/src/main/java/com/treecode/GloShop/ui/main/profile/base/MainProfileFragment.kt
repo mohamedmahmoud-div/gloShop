@@ -51,9 +51,7 @@ class MainProfileFragment : Fragment() {
         val userManger = UserAccountManger(requireContext())
         val userAccount:AccountUser? = userManger.getAccountUSer()
         if (userAccount != null){
-            text_member_name.text = userAccount.fullName
-            text_member_account.text = userAccount.email
-            text_member_account.visibility =View.VISIBLE
+            text_member_name.text = userAccount.storeName
             text_member_name.visibility = View.VISIBLE
             btn_login_sign_up.visibility = View.GONE
             text_welcome.visibility = View.GONE
@@ -79,7 +77,8 @@ class MainProfileFragment : Fragment() {
         }
 
         layout_my_address_book_profile.setOnClickListener{
-            val myAddressFragment = MyAdressBookFragment.newInstance(true)
+         //   val myAddressFragment = MyAdressBookFragment.newInstance(true)
+            val myAddressFragment = UserFragment()
             val fc: ActivityFragmentChangeListener? = activity as ActivityFragmentChangeListener?
             fc?.replaceFragment(myAddressFragment)
         }

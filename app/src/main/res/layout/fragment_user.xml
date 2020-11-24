@@ -1,0 +1,228 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context=".ui.main.profile.UserFragment">
+    <androidx.appcompat.widget.Toolbar android:id="@+id/account_bar"
+        app:layout_constraintTop_toTopOf="parent"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+
+        android:background="@drawable/gradient_toolbar"
+        android:layout_marginBottom="@dimen/sections_margin"
+        >
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+
+            >
+
+            <!--  <TextView
+                  android:id="@+id/title_your"
+                  android:layout_width="wrap_content"
+                  android:layout_height="wrap_content"
+                  android:fontFamily="@font/poppins_bold"
+                  android:textSize="@dimen/title"
+                  android:text="Your"
+                  android:textStyle="bold"
+                  app:layout_constraintStart_toStartOf="parent"
+                  app:layout_constraintTop_toTopOf="parent"
+                  app:layout_constraintBottom_toBottomOf="parent"
+                  android:layout_marginStart="@dimen/activity_horizontal_margin"
+                  android:textColor="@color/white"
+                  android:layout_marginEnd="@dimen/sections_margin"
+                  />
+              <TextView
+                  android:id="@+id/title_logo"
+                  android:layout_width="wrap_content"
+                  android:layout_height="wrap_content"
+                  android:text="Logo"
+                  app:layout_constraintStart_toEndOf="@id/title_your"
+
+                  app:layout_constraintTop_toTopOf="parent"
+                  app:layout_constraintBottom_toBottomOf="parent"
+                  android:textColor="@color/orange"
+                  android:fontFamily="@font/poppins_bold"
+                  android:textSize="@dimen/title"
+                  />-->
+            <ImageView
+                android:layout_width="?attr/actionBarSize"
+                android:layout_height="?attr/actionBarSize"
+
+                app:layout_constraintStart_toStartOf="parent"
+             app:layout_constraintTop_toTopOf="parent"
+                android:background="@drawable/iconbar"
+                />
+            <TextView
+                android:id="@+id/text_profile_bar_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+
+                app:layout_constraintStart_toStartOf="parent"
+                android:layout_marginStart="@dimen/sections_margin"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"
+                android:text="@string/my_account"
+                android:fontFamily="@font/poppins_medium"
+                android:textColor="@color/black"
+                android:lines="1"
+                android:textSize="@dimen/font_title"
+                />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.appcompat.widget.Toolbar>
+
+    <LinearLayout
+        android:id="@+id/layout_my_address_book_profile"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintTop_toBottomOf="@id/account_bar"
+        android:layout_marginTop="@dimen/activity_vertical_margin"
+        android:layout_marginStart="@dimen/small_margin"
+        >
+        <ImageView
+            android:layout_width="@dimen/size_32"
+            android:layout_height="@dimen/size_32"
+            android:background="@drawable/ic_addressbook"/>
+        <TextView
+            android:id="@+id/text_address_book"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/my_address_book"
+            android:fontFamily="@font/poppins_bold"
+            android:textSize="@dimen/title"
+            android:textColor="@color/colorPrimary"
+            android:layout_marginStart="@dimen/activity_vertical_margin"
+            android:background="@color/my_transparent"
+            />
+    </LinearLayout>
+    <ImageView
+        android:id="@+id/line"
+        android:layout_marginTop="@dimen/small_margin"
+        android:layout_width="match_parent"
+        android:background="@color/grey"
+        app:layout_constraintTop_toBottomOf="@id/layout_my_address_book_profile"
+        android:layout_marginStart="@dimen/small_margin"
+        android:layout_marginEnd="@dimen/small_margin"
+        android:layout_height="2dp"
+        android:layout_marginBottom="@dimen/activity_vertical_margin"/>
+    <LinearLayout
+
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="#00FFFFFF"
+        android:orientation="vertical"
+        app:layout_constraintTop_toBottomOf="@id/line"
+        android:layout_marginTop="@dimen/fragment_vertical_margin"
+        >
+
+        <androidx.cardview.widget.CardView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/activity_horizontal_margin"
+            app:cardBackgroundColor="@color/white"
+            app:cardCornerRadius="10dp"
+            app:cardElevation="20dp"
+            >
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+<TextView
+    android:id="@+id/text_header_store_name"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    app:layout_constraintTop_toTopOf="parent"
+    app:layout_constraintStart_toStartOf="parent"
+    android:layout_marginStart="@dimen/activity_horizontal_margin"
+    android:text="@string/store_name"
+    android:fontFamily="@font/poppins_bold"
+    android:textColor="@color/black"
+    android:textSize="@dimen/title"
+    />
+         <TextView
+             android:id="@+id/text_store_name"
+             android:layout_width="wrap_content"
+             android:layout_height="wrap_content"
+             app:layout_constraintStart_toEndOf="@id/text_header_store_name"
+             app:layout_constraintTop_toTopOf="parent"
+             android:layout_marginStart="@dimen/small_margin"
+             android:fontFamily="@font/poppins_medium"
+             android:textColor="@color/black"
+             android:textSize="@dimen/title"
+             android:text="Store "
+             />
+
+                <TextView
+                    android:id="@+id/text_header_user_name"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintTop_toBottomOf="@id/text_header_store_name"
+                    android:layout_marginTop="@dimen/activity_vertical_margin"
+                    app:layout_constraintStart_toStartOf="parent"
+                    android:layout_marginStart="@dimen/activity_horizontal_margin"
+                    android:text="@string/username"
+                    android:fontFamily="@font/poppins_bold"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/title"
+                 android:visibility="gone"   />
+                <TextView
+                    android:id="@+id/text_user_name"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintStart_toEndOf="@id/text_header_user_name"
+                    app:layout_constraintTop_toBottomOf="@id/text_header_store_name"
+                    android:layout_marginTop="@dimen/activity_vertical_margin"
+                    android:layout_marginStart="@dimen/small_margin"
+                    android:fontFamily="@font/poppins_medium"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/title"
+                    android:text="Store "
+                 android:visibility="gone"   />
+                <TextView
+                    android:id="@+id/text_header_user_full_name"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintTop_toBottomOf="@id/text_user_name"
+                    app:layout_constraintStart_toStartOf="parent"
+                    android:layout_marginTop="@dimen/fragment_vertical_margin"
+                    android:layout_marginStart="@dimen/activity_horizontal_margin"
+                    android:text="@string/fullname"
+                    android:fontFamily="@font/poppins_bold"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/title"
+                android:visibility="gone"    />
+                <TextView
+                    android:id="@+id/text_user_full_name"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintStart_toEndOf="@id/text_header_user_full_name"
+                    app:layout_constraintTop_toBottomOf="@id/text_user_name"
+                    android:layout_marginTop="@dimen/fragment_vertical_margin"
+                    android:layout_marginStart="@dimen/small_margin"
+                    android:fontFamily="@font/poppins_medium"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/title"
+                    android:text="Store "
+                   android:visibility="gone" />
+
+                <Button
+                    android:id="@+id/btn_edit_store_name"
+                 android:layout_width="wrap_content"
+                 android:layout_height="wrap_content"
+                 app:layout_constraintTop_toBottomOf="@id/text_user_full_name"
+                 app:layout_constraintEnd_toEndOf="parent"
+                 android:layout_marginEnd="@dimen/small_margin"
+                 android:background="@color/white"
+                 android:textColor="@color/colorPrimary"
+                 android:text="@string/Edit"
+                 />
+            </androidx.constraintlayout.widget.ConstraintLayout>
+        </androidx.cardview.widget.CardView>
+    </LinearLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>
